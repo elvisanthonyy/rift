@@ -100,11 +100,11 @@ const UserPost = ({ post, getPost, userId }) => {
 
   return (
     <div
-      className={`flex flex-col mx-auto text-sm w-[70%] lg:w-[700px] min-h-60 md:min-h-80 h-fit border-1 m-10 rounded-lg relative items-center justify-center border-gray-400 md:w-[600px] ${
+      className={`flex flex-col mx-auto text-sm min-h-60 md:min-h-80 h-fit border-1 m-10 rounded-lg relative items-center justify-center border-gray-400 w-[90%] ${
         theme == "light"
           ? " text-lightTheme-text border-lightTheme-border"
           : " text-darkTheme-text border-1 border-darkTheme-border"
-      }`}
+      } `}
     >
       <div className=" mr-auto ml-6 mt-5">You</div>
       <div className="flex justify-center items-center absolute top-6 right-6">
@@ -125,7 +125,7 @@ const UserPost = ({ post, getPost, userId }) => {
           <MdDelete className="text-red-500 text-1xl" />
         </button>
       </div>
-      <div className="flex w-[400px] min-h-60 h-fit p-10 items-center text-wrap text-center m-10  justify-center px-10 break-words">
+      <div className="flex w-[400px] min-h-30 h-fit p-10 items-center text-wrap text-center m-10  justify-center px-10 break-words">
         {post.post}
       </div>
       <div className="flex h-17 w-full justify-between items-center px-5">

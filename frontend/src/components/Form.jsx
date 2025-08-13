@@ -62,7 +62,7 @@ const Form = ({ route, method }) => {
         <img className=" object-cover h-full" src={back}></img>
       </div>
       <div className="flex  w-[100dvh] flex-col md:w-[50%] justify-center items-center ">
-        <h1 className=" m-3 -mt-10 text-[14px] md:text-[18px] lg:mt-25">
+        <h1 className=" m-3 -mt-23 text-[14px] md:text-[18px] lg:mt-25">
           {name.toUpperCase()}
         </h1>
         <form

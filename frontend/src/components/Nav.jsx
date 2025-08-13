@@ -63,26 +63,11 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
           theme == "light"
             ? "bg-lightTheme-background text-lightTheme-text"
             : "bg-darkTheme-background text-darkTheme-text border-b-1 border-b-darkTheme-border"
-        } shadow-sm items-center px-[2%] md:px-[5%] justify-between z-20`}
+        } shadow-sm items-center px-[4%] md:px-[5%] justify-between z-20`}
       >
-        <div className="flex items-center justify-center md:min-w-80 w-fit">
-          <div className="text-2xl text-red-700 mx-4 md:mr-10">
-            {theme == "light" ? (
-              <img
-                className="hidden md:block h-4 md:h-6"
-                alt="rift"
-                src={rift}
-              />
-            ) : (
-              <img
-                className="hidden md:block h-3 md:h-4"
-                alt="rift"
-                src={rift_dark}
-              />
-            )}
-          </div>
+        <div className="flex items-center mx-[4px] justify-center md:min-w-80 w-fit">
           <div className="flex md:min-w-35 w-fit h-full justify-start items-center">
-            <div className="h-10 w-10 mr-2 rounded-[50%] flex items-center text-lg">
+            <div className="h-10 w-10 md:mr-2 rounded-[50%] flex items-center justify-center text-lg">
               <Link to="/profile">
                 <VscAccount className="text-md md:text-2xl" />
               </Link>
@@ -99,10 +84,16 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
             )}
           </div>
         </div>
-
+        <div className="text-2xl text-red-700 md:mx-4 md:mr-10">
+          {theme == "light" ? (
+            <img className=" h-4 md:h-6" alt="rift" src={rift} />
+          ) : (
+            <img className="h-3 md:h-4" alt="rift" src={rift_dark} />
+          )}
+        </div>
         <div
           className={`flex text-[20px] md:text-[21px] h-full ${
-            name == "Others" ? "w-[55%] md:w-[380px]" : "w-fit"
+            name == "Others" ? "w-[45%] md:w-[380px]" : "w-fit"
           } justify-between items-center`}
         >
           {name == "Others" ? (
@@ -162,7 +153,7 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
             </div>
           </div>
         </div>
-        <div className="block h-fit w-fit mx-4">
+        <div className="block h-fit w-fit mx-2">
           <span className="block w-[18px] h-[1px] rounded-lg bg-white m-[4px]"></span>
           <span className="block w-[18px] h-[1px] rounded-lg bg-white m-[4px]"></span>
           <span className="block w-[18px] h-[1px] rounded-lg bg-white m-[4px]"></span>
