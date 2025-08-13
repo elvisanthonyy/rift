@@ -19,6 +19,8 @@ import { ConversationContext } from "./ConversationContext";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 
+const API = import.meta.env.VITE_REACT_API_URL;
+
 const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
   const navigate = useNavigate();
   const { selectedConversation, setSelectedConversation } =
@@ -32,7 +34,7 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
     const token = localStorage.getItem("token");
     setLoading(true);
     axios
-      .get("http://localhost:3000/user/profile", {
+      .get(`${API}/user/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

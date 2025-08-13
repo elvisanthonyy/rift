@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ThemeContext } from "../contexts/ThemeContext";
 import ButtonLoading from "../components/ButtonLoading";
 
-const API = import.meta.env.REACT_API;
+const API = import.meta.env.VITE_REACT_API_URL;
 
 const Profile = () => {
   const { theme } = useContext(ThemeContext);
@@ -197,7 +197,7 @@ const Profile = () => {
               {loading.fetchData ? (
                 //ensure post is not undefined to prevent erro
                 <Loading />
-              ) : posts.length == 0 ? (
+              ) : posts === undefined || null ? (
                 <div className="mt-auto mb-auto">No post yet</div>
               ) : (
                 <div

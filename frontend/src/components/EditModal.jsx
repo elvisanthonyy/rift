@@ -4,6 +4,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ThemeContext } from "../contexts/ThemeContext";
 
+const API = import.meta.env.VITE_REACT_API_URL;
+
 const EditModal = ({ post, onClose }) => {
   const { theme } = useContext(ThemeContext);
   const [success, setSuccess] = useState("");
@@ -20,7 +22,7 @@ const EditModal = ({ post, onClose }) => {
 
     setLoading(true);
     axios
-      .put(`http://localhost:3000/post/${post._id}`, data, {
+      .put(`${API}/post/${post._id}`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

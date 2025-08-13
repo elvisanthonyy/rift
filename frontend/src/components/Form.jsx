@@ -57,15 +57,15 @@ const Form = ({ route, method }) => {
   };
 
   return (
-    <div className="flex h-screen items-center w-full ">
-      <div className="w-[50%] h-screen">
-        <img className="hidden object-cover h-full" src={back}></img>
+    <div className="flex h-screen justify-center  w-full ">
+      <div className=" hidden lg:block w-[50%] h-screen">
+        <img className=" object-cover h-full" src={back}></img>
       </div>
-      <div className="flex flex-col w-[50%] items-center h-screen">
-        <h1 className=" m-3 text-[18px] mt-25 mb-5 ">{name.toUpperCase()}</h1>
+      <div className="flex  w-[100%] flex-col md:w-[50%] justify-center items-center ">
+        <h1 className=" m-3 text-[18px] lg:mt-25">{name.toUpperCase()}</h1>
         <form
           autoComplete="off"
-          className="flex min-h-90 h-fit w-110 flex-col mt-8 border-1 m-auto border-lightTheme-border rounded-[7px] p-10 justify-evenly  items-center relative text-left bg-white"
+          className="flex min-h-90 h-fit w-100 md:w-110 lg:m-auto flex-col mt-4 border-1  border-lightTheme-border rounded-[7px] p-10 justify-evenly  items-center relative text-left bg-white"
         >
           <img src={rift} className="h-6 m-5" alt="rift" />
 
@@ -75,7 +75,7 @@ const Form = ({ route, method }) => {
             <div className="text-red-700 text-xl">{message}</div>
           )}
           {method == "register" ? (
-            <div className="flex h-fit w-[85%] p-2 m-2 justify-between text-sm items-center text-left bg-white-400">
+            <div className="flex h-fit w-[95%]  lg:w-[85%] p-2 m-2 justify-between text-sm items-center text-left bg-white-400">
               <label className="text-gray-800">Username</label>
               <input
                 type="email"
@@ -90,7 +90,7 @@ const Form = ({ route, method }) => {
             ""
           )}
 
-          <div className="flex h-fit w-[85%] p-2 m-2 justify-between text-sm items-center text-left bg-white-400">
+          <div className="flex h-fit  w-[95%]  lg:w-[85%] p-2 m-2 justify-between text-sm items-center text-left bg-white-400">
             <label className="text-gray-800">Email</label>
             <input
               className="border-1 px-2 py-[3px] w-[75%] rounded-[4px] border-gray-400 focus:outline-none"
@@ -102,7 +102,7 @@ const Form = ({ route, method }) => {
             />
           </div>
 
-          <div className="flex h-fit w-[85%] p-2 m-2 justify-between text-sm items-center text-left bg-white-400">
+          <div className="flex h-fit  w-[95%]  lg:w-[85%] p-2 m-2 justify-between text-sm items-center text-left bg-white-400">
             <label className="text-gray-800">Password</label>
             <input
               className="border-1 px-2 py-[3px] w-[75%] rounded-[4px] border-gray-400 focus:outline-none"

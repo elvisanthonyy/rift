@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-      <div className="w-full h-80 flex bg-darkTheme-body text-sm text-darkTheme-text justify-center items-center">
+      <div className="w-full m:h-80 h-fit flex bg-darkTheme-body text-sm text-darkTheme-text justify-center items-center">
         <p className="w-[40%] m-10">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus
           quo a maiores delectus laboriosam expedita iste minima minus ex ipsa

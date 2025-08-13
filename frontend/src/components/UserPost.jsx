@@ -9,6 +9,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ThemeContext } from "../contexts/ThemeContext";
 
+const API = import.meta.env.VITE_REACT_API_URL;
+
 const UserPost = ({ post, getPost, userId }) => {
   const { theme } = useContext(ThemeContext);
   const [loading, setLoading] = useState(false);
@@ -31,7 +33,7 @@ const UserPost = ({ post, getPost, userId }) => {
     const token = localStorage.getItem("token");
 
     axios
-      .post(`http://localhost:3000/post/${post._id}`, null, {
+      .post(`${API}/post/${post._id}`, null, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -65,7 +67,7 @@ const UserPost = ({ post, getPost, userId }) => {
   const handleDelete = (id) => {
     const token = localStorage.getItem("token");
     axios
-      .delete(`http://localhost:3000/post/delete/${id}`, {
+      .delete(`${API}/post/delete/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
