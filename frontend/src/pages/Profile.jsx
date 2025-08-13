@@ -133,7 +133,7 @@ const Profile = () => {
         ) : (
           <div className="flex flex-col md:flex-row relative">
             <form
-              className={`relative flex justify-start text-sm pt-10 mx-auto align-center flex-col w-[95%] md:w-[30%] h-[85%] p-10 rounded-sm top-17 md:top-22 md:left-[1%] md:mx-auto ${
+              className={`relative flex justify-start text-sm pt-10 mx-auto align-center flex-col w-[95%] md:w-[30%] h-[85%] p-10 rounded-sm top-19 md:top-22 md:left-[1%] md:mx-auto ${
                 theme == "light"
                   ? "bg-lightTheme-background text-lightTheme-text"
                   : "bg-darkTheme-background text-darkTheme-text border-1 border-darkTheme-border"

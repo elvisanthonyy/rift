@@ -59,18 +59,26 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
   return (
     <>
       <nav
-        className={`flex fixed top-0 left-0 w-full h-15 md:h-19 ${
+        className={`flex fixed top-0 left-0 w-full h-17 md:h-19 ${
           theme == "light"
             ? "bg-lightTheme-background text-lightTheme-text"
             : "bg-darkTheme-background text-darkTheme-text border-b-1 border-b-darkTheme-border"
         } shadow-sm items-center px-[2%] md:px-[5%] justify-between z-20`}
       >
-        <div className="flex items-center  md:min-w-80 w-fit">
-          <div className="text-2xl text-red-700 mx-4 mr-10">
+        <div className="flex items-center justify-center md:min-w-80 w-fit">
+          <div className="text-2xl text-red-700 mx-4 md:mr-10">
             {theme == "light" ? (
-              <img className="h-4 md:h-6" alt="rift" src={rift} />
+              <img
+                className="hidden md:block h-4 md:h-6"
+                alt="rift"
+                src={rift}
+              />
             ) : (
-              <img className="h-3 md:h-4" alt="rift" src={rift_dark} />
+              <img
+                className="hidden md:block h-3 md:h-4"
+                alt="rift"
+                src={rift_dark}
+              />
             )}
           </div>
           <div className="flex md:min-w-35 w-fit h-full justify-start items-center">
@@ -100,7 +108,7 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
           {name == "Others" ? (
             <>
               <div
-                className={`flex  cursor-pointer h-full w-20 items-center justify-center ${
+                className={`flex cursor-pointer h-full w-20 items-center justify-center ${
                   checkFriend ? "text-red-500 " : ""
                 }  hover:opacity-75  `}
                 onClick={handleT}
@@ -109,12 +117,12 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
               </div>
 
               <div
-                className={`flex cursor-pointer h-full w-20 items-center justify-center ${
+                className={`flex cursor-pointer  h-full w-20 mt-[3px] items-center justify-center ${
                   checkMessage ? "text-red-500" : ""
                 } hover:opacity-75 `}
                 onClick={handle}
               >
-                <MdMessage className="text-[17px] md:text-[19px]  " />
+                <MdMessage className="text-[18px] md:text-[19px]  " />
               </div>
             </>
           ) : (
@@ -123,7 +131,7 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
 
           <Link to="/" className="h-full">
             <div
-              className={`flex cursor-pointer h-full w-10 items-center justify-center  text-darktheme-text ${
+              className={`flex cursor-pointer h-full w-15 items-center justify-center  text-darktheme-text ${
                 theme == "light"
                   ? "hover:bg-lightTheme-body/25"
                   : "hover:bg-darkTheme-body"
@@ -153,11 +161,11 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
               <div className="text-sm ml-3 text-red-500">Log Out</div>
             </div>
           </div>
-          <div className="block h-fit w-fit mx-4">
-            <span className="block w-[18px] h-[1px] rounded-lg bg-white m-[4px]"></span>
-            <span className="block w-[18px] h-[1px] rounded-lg bg-white m-[4px]"></span>
-            <span className="block w-[18px] h-[1px] rounded-lg bg-white m-[4px]"></span>
-          </div>
+        </div>
+        <div className="block h-fit w-fit mx-4">
+          <span className="block w-[18px] h-[1px] rounded-lg bg-white m-[4px]"></span>
+          <span className="block w-[18px] h-[1px] rounded-lg bg-white m-[4px]"></span>
+          <span className="block w-[18px] h-[1px] rounded-lg bg-white m-[4px]"></span>
         </div>
       </nav>
     </>

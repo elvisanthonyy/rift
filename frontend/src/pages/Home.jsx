@@ -286,7 +286,7 @@ const Home = () => {
     <>
       <SocketContext.Provider value={socket}>
         <div
-          className={`min-h-[110vh] pt-17 md:pt-22 ${
+          className={`min-h-[110vh] pt-19 md:pt-22 ${
             theme == "light" ? "bg-lightTheme-body" : "bg-darkTheme-body"
           }`}
         >
@@ -331,7 +331,7 @@ const Home = () => {
               <textarea
                 //post input
                 rows="1"
-                className={`flex w-[73%] border-1  min-h-9 h-30 rounded-sm max-h-30 resize-none overflow-hidden focus:outline-none ${
+                className={`flex w-[73%] border-1 p-2 min-h-9 h-30 rounded-sm max-h-30 resize-none overflow-hidden focus:outline-none ${
                   theme == " light"
                     ? " border-lightTheme-border"
                     : " border-darkTheme-border"
@@ -389,7 +389,7 @@ const Home = () => {
               theme == "light"
                 ? "bg-lightTheme-background text-lightTheme-text"
                 : "bg-darkTheme-background text-darkTheme-text md:border-1 border-darkTheme-border scrollbar-custom "
-            } md:right-[1%] top-17 md:top-22 overflow-y-scroll transition p-7 duration-800 ${
+            } md:right-[1%] top-19 md:top-22 overflow-y-scroll transition p-7 duration-800 ${
               isMessageOpen ? "-translate-x-0 " : "translate-x-150"
             }`}
           >
@@ -430,7 +430,7 @@ const Home = () => {
               theme == "light"
                 ? "bg-lightTheme-background text-lightTheme-text"
                 : "bg-darkTheme-background text-darkTheme-text md:border-1 md:border-darkTheme-border scrollbar-custom"
-            } md:left-[1%] left-[0%] top-17 md:top-22 transition duration-800 overflow-y-scroll ${
+            } md:left-[1%] left-[0%] top-19 md:top-22 transition duration-800 overflow-y-scroll ${
               isFriendOpen ? "translate-x-0 " : "-translate-x-150"
             }`}
           >
