@@ -27,7 +27,11 @@ export const SocketContext = createContext();
 
 const token = localStorage.getItem("token");
 
-const socket = io("http://localhost:3000", {
+const API = import.meta.env.VITE_REACT_API_URL;
+
+console.log(API);
+
+const socket = io(API, {
   auth: {
     token: token,
   },
@@ -82,7 +86,7 @@ const Home = () => {
   };
 
   const api = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: API,
   });
 
   api.interceptors.request.use(

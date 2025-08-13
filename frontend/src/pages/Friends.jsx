@@ -5,6 +5,8 @@ import Loading from "../components/Loading";
 import Button from "../components/Button";
 import axios from "axios";
 
+const API = import.meta.env.REACT_API;
+
 const Friends = () => {
   const [id, setId] = useState();
   const [friends, setFriends] = useState();
@@ -33,7 +35,7 @@ const Friends = () => {
   const addFriend = async (id) => {
     const token = localStorage.getItem("token");
     axios
-      .get(`http://localhost:3000/friend/${id}`, {
+      .get(`${API}/${id}`, {
         headers: {
           Authorization: token,
         },

@@ -16,12 +16,10 @@ const ProtectedRoutes = ({ children }) => {
       if (token) {
         const user = jwtDecode(token);
         if (!user) {
-          onsole.log(user);
           setIsAuthorized(false);
           const token = localStorage.removeItem("token");
           return;
         } else {
-          console.log(user);
           setIsAuthorized(true);
         }
       } else {

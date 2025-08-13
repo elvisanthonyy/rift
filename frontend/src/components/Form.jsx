@@ -59,7 +59,7 @@ const Form = ({ route, method }) => {
   return (
     <div className="flex h-screen items-center w-full ">
       <div className="w-[50%] h-screen">
-        <img className="object-cover h-full" src={back}></img>
+        <img className="hidden object-cover h-full" src={back}></img>
       </div>
       <div className="flex flex-col w-[50%] items-center h-screen">
         <h1 className=" m-3 text-[18px] mt-25 mb-5 ">{name.toUpperCase()}</h1>

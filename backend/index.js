@@ -22,7 +22,14 @@ console.log(ALLOWED_ORIGIN);
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ALLOWED_ORIGIN,
+    methods: ["GET", "POST", "PUT"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: "something",
+  })
+);
 
 const server = createServer(app);
 

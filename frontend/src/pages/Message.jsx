@@ -5,6 +5,8 @@ import Loading from "../components/Loading";
 import Button from "../components/Button";
 import axios from "axios";
 
+const API = import.meta.env.VITE_REACT_API_URL;
+
 const Message = () => {
   const token = localStorage.getItem("token");
 
@@ -22,7 +24,7 @@ const Message = () => {
     setLoading(true);
 
     axios
-      .post(`http://localhost:3000/message/${id}`, data, {
+      .post(`${API}/${id}`, data, {
         headers: {
           Authorization: token,
         },

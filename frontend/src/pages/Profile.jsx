@@ -10,6 +10,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { ThemeContext } from "../contexts/ThemeContext";
 import ButtonLoading from "../components/ButtonLoading";
 
+const API = import.meta.env.REACT_API;
+
 const Profile = () => {
   const { theme } = useContext(ThemeContext);
   const navigate = useNavigate();
@@ -33,7 +35,7 @@ const Profile = () => {
   };
 
   const api = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: API,
   });
 
   api.interceptors.request.use(

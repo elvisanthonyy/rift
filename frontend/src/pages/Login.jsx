@@ -2,10 +2,12 @@ import React from "react";
 import Form from "../components/Form.jsx";
 import Footer from "../components/Footer.jsx";
 
+const API = import.meta.env.VITE_REACT_API_URL;
+
 const Login = () => {
   return (
     <div>
-      <Form method="login" route="http://localhost:3000/user/login" />
+      <Form method="login" route={`${API}/user/login`} />
       <Footer />
     </div>
   );
