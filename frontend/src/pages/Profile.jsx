@@ -131,13 +131,13 @@ const Profile = () => {
             <Loading />
           </div>
         ) : (
-          <div className="flex relative ">
+          <div className="flex flex-col md:flex-row relative">
             <form
-              className={`flex justify-start text-sm pt-10 align-center flex-col w-[30%] h-[85%] p-10 rounded-sm top-22 left-[1%] mx-auto ${
+              className={`relative flex justify-start text-sm pt-10 mx-auto align-center flex-col w-[95%] md:w-[30%] h-[85%] p-10 rounded-sm top-17 md:top-22 md:left-[1%] md:mx-auto ${
                 theme == "light"
                   ? "bg-lightTheme-background text-lightTheme-text"
                   : "bg-darkTheme-background text-darkTheme-text border-1 border-darkTheme-border"
-              } fixed`}
+              } md:fixed`}
               onSubmit={editProfile}
             >
               <h1 className=" w-[100%] pb-4 border-b-1 boder-gray-400 mx-auto mb-12 flex justify-center">
@@ -186,10 +186,10 @@ const Profile = () => {
               </button>
             </form>
             <div
-              className={`w-[67%]  h-fit min-h-[85dvh] flex flex-col items-center ml-auto mt-22 mr-[1%] p-10 ${
+              className={`w-full md:w-[67%] mx-auto h-fit min-h-[85dvh] flex flex-col items-center ml-auto mt-22 md:mr-[1%] p-10 ${
                 theme == "light"
                   ? "bg-lightTheme-background text-lightTheme-text"
-                  : "bg-darkTheme-background text-darkTheme-text border-1 border-darkTheme-border"
+                  : "bg-darkTheme-background text-darkTheme-text md:border-1 border-darkTheme-border"
               }`}
               //for displaying users post only
             >

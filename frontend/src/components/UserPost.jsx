@@ -100,7 +100,7 @@ const UserPost = ({ post, getPost, userId }) => {
 
   return (
     <div
-      className={`flex flex-col text-sm lg:w-[700px] min-h-80 h-fit border-1 m-10 rounded-lg relative items-center justify-center border-gray-400 md:w-[600px] ${
+      className={`flex flex-col mx-auto text-sm w-[70%] lg:w-[700px] min-h-60 md:min-h-80 h-fit border-1 m-10 rounded-lg relative items-center justify-center border-gray-400 md:w-[600px] ${
         theme == "light"
           ? " text-lightTheme-text border-lightTheme-border"
           : " text-darkTheme-text border-1 border-darkTheme-border"

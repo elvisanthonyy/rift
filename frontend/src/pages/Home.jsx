@@ -68,13 +68,23 @@ const Home = () => {
 
   //open and close message
   const handleMessageOpen = () => {
-    isMessageOpen ? setIsMessageOpen(false) : setIsMessageOpen(true);
-    checkChat && setCheckChat(false);
+    if (window.innerWidth < 762) {
+      setIsMessageOpen(true);
+      setIsFriendOpen(false);
+    } else {
+      isMessageOpen ? setIsMessageOpen(false) : setIsMessageOpen(true);
+      checkChat && setCheckChat(false);
+    }
   };
 
   //open and close friend box
   const handleFriendOpen = () => {
-    isFriendOpen ? setIsFriendOpen(false) : setIsFriendOpen(true);
+    if (window.innerWidth < 762) {
+      setIsMessageOpen(false);
+      setIsFriendOpen(true);
+    } else {
+      isFriendOpen ? setIsFriendOpen(false) : setIsFriendOpen(true);
+    }
   };
 
   //for opening/closing, and appending data to chat
@@ -303,11 +313,11 @@ const Home = () => {
           )}
 
           <div
-            className={`flex flex-col text-sm w-full md:w-[50%] min-h-[100dvh] max-h-fit  mx-auto justify-center items-center ${
+            className={`md:flex flex-col text-sm w-full md:w-[50%] min-h-[100dvh] max-h-fit  mx-auto justify-center items-center ${
               theme == "light"
                 ? "bg-lightTheme-background text-lightTheme-text"
                 : "bg-darkTheme-background text-darkTheme-text md:border-1 md:border-darkTheme-border"
-            }`}
+            } ${isFriendOpen || isMessageOpen ? "hidden" : "flex"}`}
           >
             <form
               //form for sending posts
@@ -375,11 +385,11 @@ const Home = () => {
           )}
           <div
             //conversation container
-            className={`flex flex-col w-[22%] h-110 rounded-sm shadow-lg fixed ${
+            className={`flex flex-col w-screen h-[100dvh] md:w-[22%] md:h-110 rounded-sm shadow-lg fixed ${
               theme == "light"
                 ? "bg-lightTheme-background text-lightTheme-text"
-                : "bg-darkTheme-background text-darkTheme-text border-1 border-darkTheme-border scrollbar-custom "
-            } right-[1%] top-22 overflow-y-scroll transition p-7 duration-800 ${
+                : "bg-darkTheme-background text-darkTheme-text md:border-1 border-darkTheme-border scrollbar-custom "
+            } md:right-[1%] top-17 md:top-22 overflow-y-scroll transition p-7 duration-800 ${
               isMessageOpen ? "-translate-x-0 " : "translate-x-150"
             }`}
           >

@@ -93,8 +93,8 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
         </div>
 
         <div
-          className={`flex text-[18px] md:text-[21px] h-full ${
-            name == "Others" ? "w-[45%] md:w-[380px]" : "w-fit"
+          className={`flex text-[20px] md:text-[21px] h-full ${
+            name == "Others" ? "w-[55%] md:w-[380px]" : "w-fit"
           } justify-between items-center`}
         >
           {name == "Others" ? (
@@ -114,7 +114,7 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
                 } hover:opacity-75 `}
                 onClick={handle}
               >
-                <MdMessage className="text-[14px] md:text-[19px]  " />
+                <MdMessage className="text-[17px] md:text-[19px]  " />
               </div>
             </>
           ) : (
