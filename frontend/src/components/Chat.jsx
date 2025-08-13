@@ -134,7 +134,7 @@ const Chat = ({ conversation, title, userId, call, back }) => {
     <>
       <div className=" ">
         <div
-          className={`flex flex-col w-90 h-120 rounded-sm fixed items-center shadow-lg right-[1%] ${
+          className={`flex bg-amber-400 flex-col w-90 h-120 rounded-sm fixed items-center shadow-lg right-[1%] ${
             theme == "light"
               ? "bg-lightTheme-background text-lightTheme-text"
               : "bg-darkTheme-background text-darkTheme-text border-1 border-darkTheme-border scrollbar-custom"

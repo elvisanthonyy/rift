@@ -276,7 +276,7 @@ const Home = () => {
     <>
       <SocketContext.Provider value={socket}>
         <div
-          className={`min-h-[110vh] pt-22 ${
+          className={`min-h-[110vh] pt-17 md:pt-22 ${
             theme == "light" ? "bg-lightTheme-body" : "bg-darkTheme-body"
           }`}
         >
@@ -303,25 +303,25 @@ const Home = () => {
           )}
 
           <div
-            className={`flex flex-col text-sm w-[50%] min-h-[85dvh] max-h-fit  pt-5 mx-auto justify-center items-center ${
+            className={`flex flex-col text-sm w-full md:w-[50%] min-h-[100dvh] max-h-fit  mx-auto justify-center items-center ${
               theme == "light"
                 ? "bg-lightTheme-background text-lightTheme-text"
-                : "bg-darkTheme-background text-darkTheme-text border-1 border-darkTheme-border"
+                : "bg-darkTheme-background text-darkTheme-text md:border-1 md:border-darkTheme-border"
             }`}
           >
             <form
               //form for sending posts
-              className={`flex mt-5 mb-10 mr-auto ml-auto min-h-18 h-auto not-first: w-full border-b-1 ${
+              className={`flex h-20 md:min-h-18 w-full border-b-1 ${
                 theme == "light"
                   ? "border-b-lightTheme-border"
                   : "border-b-darkTheme-border"
-              } justify-center items-center pb-8`}
+              }  md:pb-8 items-center justify-between px-5`}
               onSubmit={sendPost}
             >
               <textarea
                 //post input
                 rows="1"
-                className={`w-[73%] border-1 mr-10 p-2 rounded-sm max-h-30 resize-none overflow-hidden focus:outline-none ${
+                className={`flex w-[73%] border-1  min-h-9 h-30 rounded-sm max-h-30 resize-none overflow-hidden focus:outline-none ${
                   theme == " light"
                     ? " border-lightTheme-border"
                     : " border-darkTheme-border"
@@ -416,11 +416,11 @@ const Home = () => {
           </div>
 
           <div
-            className={`flex flex-col w-[22%] h-110 rounded-sm  items-center shadow-lg fixed ${
+            className={`flex flex-col w-screen h-full md:w-[22%] md:h-110 rounded-sm  items-center shadow-lg fixed ${
               theme == "light"
                 ? "bg-lightTheme-background text-lightTheme-text"
-                : "bg-darkTheme-background text-darkTheme-text border-1 border-darkTheme-border scrollbar-custom"
-            } left-[1%] top-22 transition duration-800 overflow-y-scroll ${
+                : "bg-darkTheme-background text-darkTheme-text md:border-1 md:border-darkTheme-border scrollbar-custom"
+            } md:left-[1%] left-[0%] top-17 md:top-22 transition duration-800 overflow-y-scroll ${
               isFriendOpen ? "translate-x-0 " : "-translate-x-150"
             }`}
           >
