@@ -65,7 +65,7 @@ const Form = ({ route, method }) => {
         <h1 className=" m-3 text-[18px] lg:mt-25">{name.toUpperCase()}</h1>
         <form
           autoComplete="off"
-          className="flex min-h-90 h-fit w-100 md:w-110 lg:m-auto flex-col mt-4 border-1  border-lightTheme-border rounded-[7px] p-10 justify-evenly  items-center relative text-left bg-white"
+          className="flex min-h-90 h-fit w-[80%] md:w-110 lg:m-auto flex-col mt-4 border-1  border-lightTheme-border rounded-[7px] p-10 justify-evenly  items-center relative text-left bg-white"
         >
           <img src={rift} className="h-6 m-5" alt="rift" />
 
