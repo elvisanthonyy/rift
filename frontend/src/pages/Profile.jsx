@@ -186,7 +186,7 @@ const Profile = () => {
               </button>
             </form>
             <div
-              className={`w-full md:w-[67%] mx-auto h-fit min-h-[85dvh] block items-center ml-auto mt-22 md:mr-[1%] p-10 ${
+              className={`w-full md:w-[67%] h-fit min-h-[85dvh] block items-center mt-22 md:mr-[1%] p-2 py-10 ${
                 theme == "light"
                   ? "bg-lightTheme-background text-lightTheme-text"
                   : "bg-darkTheme-background text-darkTheme-text md:border-1 border-darkTheme-border"

@@ -59,24 +59,24 @@ const EditModal = ({ post, onClose }) => {
           theme == "light"
             ? "bg-lightTheme-background text-lightTheme-text"
             : "bg-darkTheme-background text-darkTheme-text"
-        } h-120 w-180 rounded-xl flex flex-col justify-center items-center`}
+        } w-screen h-[80dvh] absolute -bottom-3 md:h-120 md:w-180 rounded-4xl md:rounded-xl flex flex-col justify-center items-center`}
         onClick={(e) => e.stopPropagation()}
       >
         <textarea
           value={postEdit !== null ? postEdit : ""}
           onChange={(e) => setPostEdit(e.target.value)}
-          className="p-4 focus:outline-none h-70 w-140 border-lightTheme-border border-1 rounded-lg m-10"
+          className="p-4 focus:outline-none h-[70%] md:h-70 w-[85%] md:w-140 border-lightTheme-border border-1 rounded-lg m-10"
         />
 
-        <div className="flex w-[35%] justify-between items-center">
+        <div className="flex w-[85%] md:w-[45%] justify-between items-center">
           <button
-            className="w-20 h-8 border-1 border-red-500 text-red-500 m-1 cursor-pointer hover:opacity-50 rounded-xl"
+            className="w-30 md:w-20 h-8 border-1 border-red-500 text-red-500 m-1 cursor-pointer hover:opacity-50 rounded-xl"
             onClick={editPost}
           >
             Save
           </button>
           <button
-            className="w-20 h-8 bg-red-500 m-1 cursor-pointer hover:opacity-50 rounded-xl"
+            className="w-30 md:w-20 h-8 bg-red-500 m-1 cursor-pointer hover:opacity-50 rounded-xl"
             onClick={onClose}
           >
             Done
