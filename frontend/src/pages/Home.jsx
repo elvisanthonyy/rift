@@ -282,6 +282,13 @@ const Home = () => {
     });
   }, []);
 
+  const hello = () => {
+    toast("hello", {
+      className: "bg-amber-400",
+      autoClose: 30,
+    });
+  };
+
   return (
     <>
       <SocketContext.Provider value={socket}>
@@ -491,6 +498,7 @@ const Home = () => {
         autoClose={1000}
         hideProgressBar={true}
       />
+      <button onClick={hello}>Hello</button>
     </>
   );
 };

@@ -29,6 +29,7 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
   const name = method === "profile" ? "Profile" : "Others";
   const [profile, setProfile] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -56,6 +57,10 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
       navigate("/login");
     }, 2000);
   };
+  const handleOpenMenu = () => {
+    isMenuOpen ? setIsMenuOpen(false) : setIsMenuOpen(true);
+  };
+
   return (
     <>
       <nav
@@ -132,31 +137,71 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
             </div>
           </Link>
 
-          <div className="hidden h-full md:flex justify-between items-center">
+          <div
+            className={` ${
+              isMenuOpen
+                ? "fixed bg-black/50 w-[100%] h-[100dvh] top-0 right-0"
+                : "hidden"
+            } m:h-full md:flex md:justify-between items-center md:none absolute `}
+            onClick={() => setIsMenuOpen(false)}
+          >
             <div
-              className={`flex bg-amber-200? "text-black" : "text-white"
+              className={` 
+                
+                   grid grid-rows-9 place-items-center gap-y-3 items-center justify-center gap-4  py-17 w-[60%] h-[100dvh] md:h-full md:w-20  top-0 right-0
+                   "hidden"
+               m:h-full md:flex md:justify-between md:static absolute ${
+                 theme == "light"
+                   ? "bg-lightTheme-body md:bg-none"
+                   : "bg-darkTheme-body md:bg-none"
+               } `}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div
+                className={`w-13 items-center justify-between text-[16px] flex bg-amber-200? "text-black" : "text-white"
           }`}
-              onClick={handleThemeChange}
-            >
-              {theme == "light" ? <MdLightMode /> : <MdDarkMode />}
-            </div>
-            <div
-              className={`flex cursor-pointer h-full w-40 items-center justify-center ${
-                theme == "light"
-                  ? "hover:bg-lightTheme-body/25"
-                  : "hover:bg-darkTheme-body"
-              } `}
-              onClick={logOut}
-            >
-              <MdLogout />
-              <div className="text-sm ml-3 text-red-500">Log Out</div>
+                onClick={handleThemeChange}
+              >
+                {theme == "light" ? <MdLightMode /> : <MdDarkMode />}
+                <div className="text-[12px]">
+                  {theme == "light" ? "Light" : "Dark"}
+                </div>
+              </div>
+              <div
+                className={`text-[16px] flex cursor-pointer h-full w-40 items-center justify-center ${
+                  theme == "light"
+                    ? "hover:bg-lightTheme-body/25"
+                    : "hover:bg-darkTheme-body"
+                } `}
+                onClick={logOut}
+              >
+                <MdLogout />
+                <div className="text-[10px] md:text-sm ml-3 text-red-500">
+                  Log Out
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div className="block h-fit w-fit mx-2">
-          <span className="block w-[18px] h-[1px] rounded-lg bg-white m-[4px]"></span>
-          <span className="block w-[18px] h-[1px] rounded-lg bg-white m-[4px]"></span>
-          <span className="block w-[18px] h-[1px] rounded-lg bg-white m-[4px]"></span>
+        <div
+          className="block md:hidden h-fit w-fit mx-2 cursor-pointer"
+          onClick={handleOpenMenu}
+        >
+          <span
+            className={`block w-[18px] h-[1px] rounded-lg bg-white m-[4px] ${
+              isMenuOpen && "-rotate-45 translate-y-1"
+            }`}
+          ></span>
+          <span
+            className={`block w-[18px] h-[1px] rounded-lg bg-white m-[4px] ${
+              isMenuOpen && "opacity-0"
+            }`}
+          ></span>
+          <span
+            className={`block w-[18px] h-[1px] rounded-lg bg-white m-[4px] ${
+              isMenuOpen && "rotate-45 -translate-y-1"
+            }`}
+          ></span>
         </div>
       </nav>
     </>
