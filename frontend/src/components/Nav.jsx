@@ -74,7 +74,7 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
           <div className="flex md:min-w-35 w-fit h-full justify-start items-center">
             <div className="h-10 w-10 md:mr-2 rounded-[50%] flex items-center justify-center text-lg">
               <Link to="/profile">
-                <VscAccount className="text-md md:text-2xl" />
+                <VscAccount className="text-md md:text-4xl" />
               </Link>
             </div>
 

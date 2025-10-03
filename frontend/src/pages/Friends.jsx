@@ -16,7 +16,7 @@ const Friends = () => {
     const token = localStorage.getItem("token");
     setLoading(true);
     axios
-      .get("http://localhost:3000/user/discover", {
+      .get(`${API}/user/discover`, {
         headers: {
           Authorization: token,
         },

@@ -15,6 +15,7 @@ import { MdDelete, MdEdit, MdArrowBack } from "react-icons/md";
 //import { SocketContext } from "./SocketContext";
 
 const Chat = ({ conversation, title, userId, call, back }) => {
+  const API = import.meta.env.VITE_REACT_API_URL;
   const chatRef = useRef(null);
   const { theme } = useContext(ThemeContext);
   const socket = useContext(SocketContext);
@@ -27,7 +28,7 @@ const Chat = ({ conversation, title, userId, call, back }) => {
   //const [recieverMessages, setRecieverMessages] = useState([]);
 
   const api = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: API,
   });
 
   api.interceptors.request.use(
@@ -134,11 +135,11 @@ const Chat = ({ conversation, title, userId, call, back }) => {
     <>
       <div className=" ">
         <div
-          className={`flex bg-amber-400 flex-col w-90 h-120 rounded-sm fixed items-center shadow-lg right-[1%] ${
+          className={`flex flex-col w-[100%] h-[91dvh] md:w-90 md:h-120 rounded-sm fixed items-center shadow-lg right-[1%] ${
             theme == "light"
               ? "bg-lightTheme-background text-lightTheme-text"
-              : "bg-darkTheme-background text-darkTheme-text border-1 border-darkTheme-border scrollbar-custom"
-          }  top-22`}
+              : "bg-darkTheme-background text-darkTheme-text md:border-1 md:border-darkTheme-border scrollbar-custom"
+          } top-17 left-0 md:top-22`}
         >
           {selectedMessage == null ? (
             <div className="flex justify-between w-[90%] m-4 mt-4 border-b-1 border-gray-300 px-2 py-4">
@@ -170,7 +171,7 @@ const Chat = ({ conversation, title, userId, call, back }) => {
           )}
 
           <div
-            className={`flex w-full flex-col-reverse m-5 overflow-y-scroll h-70 px-5 py-4 ${
+            className={`flex w-full   flex-col-reverse m-5 overflow-y-scroll h-[73%] md:h-70 px-5 py-4 ${
               theme == "light" ? "" : "scrollbar-custom"
             }`}
           >
