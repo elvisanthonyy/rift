@@ -62,7 +62,7 @@ const Form = ({ route, method }) => {
         <img className=" object-cover h-full" src={back}></img>
       </div>
       <div className="flex  w-[100dvh] flex-col md:w-[50%] justify-center items-center ">
-        <h1 className=" m-3 -mt-23 text-[14px] md:text-[18px] lg:mt-25">
+        <h1 className=" m-3  font-bold -mt-23 text-[26px] md:text-[26px] lg:mt-25">
           {name.toUpperCase()}
         </h1>
         <form
@@ -77,13 +77,10 @@ const Form = ({ route, method }) => {
             <div className="text-red-700 text-sm md:text-xl">{message}</div>
           )}
           {method == "register" ? (
-            <div className="flex h-fit w-[95%]  lg:w-[85%] p-2 m-2 justify-between text-sm items-center text-left bg-white-400">
-              <label className="text-[10px] md:text-[16px] text-gray-800">
-                Username
-              </label>
+            <div className="flex h-fit w-[95%]  lg:w-[85%] p-2 justify-between text-sm items-center text-left bg-white-400">
               <input
                 type="email"
-                className="text-[10px] md:text-[16px] border-1 px-2 py-[3px] w-[75%] rounded-[4px]  border-gray-400 focus:outline-none"
+                className="text-[12px] md:text-[16px] border-1 h-8 px-2 py-[3px] w-[100%] rounded-[4px]  border-gray-400 focus:outline-none focus:border-blue-600 focus:border-2"
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
@@ -94,12 +91,9 @@ const Form = ({ route, method }) => {
             ""
           )}
 
-          <div className="flex h-fit  w-[95%]  lg:w-[85%] p-2 m-2 justify-between text-sm items-center text-left bg-white-400">
-            <label className="text-[10px] md:text-[16px] text-gray-800">
-              Email
-            </label>
+          <div className="flex h-fit  w-[95%]  lg:w-[85%] p-2 justify-between text-sm items-center text-left bg-white-400">
             <input
-              className="text-[10px] md:text-[16px] border-1 px-2 py-[3px] w-[75%] rounded-[4px] border-gray-400 focus:outline-none"
+              className="text-[12px] md:text-[16px] border-1 h-8  px-2 py-[3px] w-[100%] rounded-[4px] border-gray-400 focus:outline-none focus:border-blue-600 focus:border-2"
               placeholder="Email"
               type="email"
               value={email}
@@ -108,12 +102,9 @@ const Form = ({ route, method }) => {
             />
           </div>
 
-          <div className="flex h-fit  w-[95%]  lg:w-[85%] p-2 m-2 justify-between text-sm items-center text-left bg-white-400">
-            <label className="text-[10px] md:text-[16px] text-gray-800">
-              Password
-            </label>
+          <div className="flex h-fit  w-[95%]  lg:w-[85%] p-2 justify-between text-sm items-center text-left bg-white-400 ">
             <input
-              className="text-[10px] md:text-[16px]-md border-1 px-2 py-[3px] w-[75%] rounded-[4px] border-gray-400 focus:outline-none"
+              className="text-[12px] md:text-[16px]-md h-8 border-1 px-2 py-[3px] w-[100%] rounded-[4px] border-gray-400 focus:outline-none focus:border-blue-600 focus:border-2"
               placeholder="Password"
               type="password"
               value={password}
@@ -127,7 +118,7 @@ const Form = ({ route, method }) => {
             name={loading ? <ButtonLoading /> : name}
           />
           <Link to={`/${name === "Register" ? "login" : "register"}`}>
-            <div className="mb-3 text-[10px] md:text-[16px] flex justify-center items-center before:bg-gray-400 before:h-[1px] before:w-[25%] md:before:w-[40%] before:m-3  before:content-[''] after:content-[''] after:h-[1px] after:w-[25%] md:after:w-[40%] after:m-3 after:bg-gray-400 w-80 ">
+            <div className="mb-3 text-[16px] md:text-[16px] flex justify-center items-center before:bg-gray-400 before:h-[1px] before:w-[25%] md:before:w-[40%] before:m-3  before:content-[''] after:content-[''] after:h-[1px] after:w-[25%] md:after:w-[40%] after:m-3 after:bg-gray-400 w-80 ">
               {name === "Register" ? "login" : "register"}
             </div>
           </Link>
