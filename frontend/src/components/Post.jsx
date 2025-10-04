@@ -4,9 +4,12 @@ import { MdThumbUp } from "react-icons/md";
 import axios from "axios";
 import { ThemeContext } from "../contexts/ThemeContext";
 
+const API = import.meta.env.VITE_REACT_API_URL;
+
 const Post = ({ post, like, userId }) => {
   const { theme } = useContext(ThemeContext);
   const [liked, setLiked] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [likeCount, setLikeCount] = useState("");
 
   const option = {
@@ -23,7 +26,7 @@ const Post = ({ post, like, userId }) => {
     const token = localStorage.getItem("token");
 
     axios
-      .post(`http://localhost:3000/post/${post._id}`, null, {
+      .post(`${API}/post/${post._id}`, null, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -47,7 +50,7 @@ const Post = ({ post, like, userId }) => {
   }, []);
   return (
     <div
-      className={`flex flex-shrink-0 flex-col w-[90%] min-h-80 h-fit border-1 ml-auto mr-auto text-md rounded-lg m-10 items-center justify-center ${
+      className={`flex flex-shrink-0 flex-col w-[90%] min-h-50 md:min-h-80 h-fit border-1 ml-auto mr-auto text-md rounded-lg m-10 items-center justify-center ${
         theme == "light"
           ? " text-lightTheme-text border-lightTheme-border"
           : " text-darkTheme-text border-1 border-darkTheme-border"
@@ -56,7 +59,7 @@ const Post = ({ post, like, userId }) => {
       <div className="relative mr-auto left-6 mt-5">
         {post.author.authorName}
       </div>
-      <div className="flex w-[400px] min-h-60 h-fit p-10 items-center text-wrap text-center m-10  justify-center px-10 break-words">
+      <div className="flex w-[400px] min-h-30 h-fit p-10 items-center text-wrap text-center m-10  justify-center px-10 break-words">
         {post.post}
       </div>
       <div className="flex h-17 w-full justify-between items-center px-5">

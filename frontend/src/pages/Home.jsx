@@ -71,6 +71,7 @@ const Home = () => {
     if (window.innerWidth < 762) {
       setIsMessageOpen(true);
       setIsFriendOpen(false);
+      setCheckChat(false);
     } else {
       isMessageOpen ? setIsMessageOpen(false) : setIsMessageOpen(true);
       checkChat && setCheckChat(false);
@@ -233,7 +234,6 @@ const Home = () => {
       .catch((error) => {
         setLoading(false);
         console.log(error);
-        alert("hi");
       });
   };
   //for getting discover friends
@@ -280,12 +280,17 @@ const Home = () => {
       //toast(message.text)
       toast(message.text);
     });
-  }, []);
+
+    if (isMessageOpen || isFriendOpen || checkChat) {
+      document.body.classList.add("overflow-y-hidden");
+    } else {
+      document.body.classList.remove("overflow-y-hidden");
+    }
+  }, [isMessageOpen, isFriendOpen, checkChat]);
 
   const hello = () => {
     toast("hello", {
       className: "bg-amber-400",
-      autoClose: 30,
     });
   };
 
@@ -293,7 +298,7 @@ const Home = () => {
     <>
       <SocketContext.Provider value={socket}>
         <div
-          className={`min-h-[110vh] pt-19 md:pt-22 ${
+          className={`min-h-[90vh] pt-19 md:pt-22 overflow-x-hidden ${
             theme == "light" ? "bg-lightTheme-body" : "bg-darkTheme-body"
           }`}
         >
@@ -320,7 +325,7 @@ const Home = () => {
           )}
 
           <div
-            className={`md:flex flex-col text-sm w-full md:w-[50%] min-h-[100dvh] max-h-fit  mx-auto justify-center items-center ${
+            className={`md:flex flex-col text-sm w-full md:w-[50%] min-h-[91dvh] max-h-fit  mx-auto items-center ${
               theme == "light"
                 ? "bg-lightTheme-background text-lightTheme-text"
                 : "bg-darkTheme-background text-darkTheme-text md:border-1 md:border-darkTheme-border"
@@ -328,17 +333,17 @@ const Home = () => {
           >
             <form
               //form for sending posts
-              className={`flex h-20 md:min-h-18 w-full border-b-1 ${
+              className={`flex h-20 md:h-30 w-full border-b-1 ${
                 theme == "light"
                   ? "border-b-lightTheme-border"
                   : "border-b-darkTheme-border"
-              }  md:pb-8 items-center justify-between px-5`}
+              }   justify-between items-center px-4`}
               onSubmit={sendPost}
             >
               <textarea
                 //post input
                 rows="1"
-                className={`flex w-[73%] border-1 p-2 min-h-9 h-30 rounded-sm max-h-30 resize-none overflow-hidden focus:outline-none ${
+                className={`flex w-[85%] border-1 p-2 min-h-9 h-fit rounded-sm max-h-25 resize-none overflow-hidden focus:outline-none ${
                   theme == " light"
                     ? " border-lightTheme-border"
                     : " border-darkTheme-border"
@@ -351,7 +356,7 @@ const Home = () => {
                 //post button
                 type="submit"
                 value="post"
-                className={`w-20 rounded-md ${
+                className={`w-15 ml-3 md:w-20 rounded-md ${
                   theme == "light"
                     ? "bg-lightTheme-text text-lightTheme-background "
                     : "bg-darkTheme-text text-darkTheme-body "
@@ -365,10 +370,10 @@ const Home = () => {
               //ensure post is not undefined to prevent erro
               <Loading />
             ) : posts.length == 0 ? (
-              <div className="mt-40 mb-auto">No post to view</div>
+              <div className="my-auto">No post to view</div>
             ) : (
               <div
-                className="w-full flex flex-col justify-center"
+                className="w-full  flex flex-col justify-center"
                 //for each post
               >
                 {posts.map((post, index) => (
@@ -441,8 +446,14 @@ const Home = () => {
               isFriendOpen ? "translate-x-0 " : "-translate-x-150"
             }`}
           >
-            <div className="flex mb-5 mt-5 w-[85%] py-2 border-b-1 border-b-gray-400 ">
+            <div className="flex items-center justify-between mb-5 mt-5 w-[85%] py-2 border-b-1 border-b-gray-400 ">
               <p>Friends: {friends.length}</p>
+              <div
+                onClick={() => setIsFriendOpen(false)}
+                className="cursor-pointer"
+              >
+                <MdClose />
+              </div>
             </div>
             {loading.fetchData || friends == undefined ? (
               <Loading />
@@ -498,7 +509,6 @@ const Home = () => {
         autoClose={1000}
         hideProgressBar={true}
       />
-      <button onClick={hello}>Hello</button>
     </>
   );
 };

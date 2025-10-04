@@ -19,17 +19,28 @@ const Form = ({ route, method }) => {
   const [loading, setLoading] = useState(false);
 
   const handleLogin = (e) => {
-    setLoading(true);
     e.preventDefault();
+    if (method === "login") {
+      if (password.length < 1 || email.length < 1)
+        return setMessage("send all fields");
+    } else {
+      if (username.length < 1 || password.length < 1 || email.length < 1)
+        return setMessage("send all fields");
+    }
+
+    setLoading(true);
+
     const data = {
       username,
       email,
       password,
     };
+
     axios
       .post(route, data)
       .then((response) => {
         const dataRes = response.data;
+
         if (method === "login") {
           if (dataRes.user) {
             localStorage.setItem("token", dataRes.user);
@@ -38,7 +49,7 @@ const Form = ({ route, method }) => {
               navigate("/");
             }, 2000);
           } else {
-            setMessage(response.data.error);
+            setMessage(response.data.message);
           }
         } else {
           if (response.data.status === "error") {
@@ -51,7 +62,11 @@ const Form = ({ route, method }) => {
       })
 
       .catch((error) => {
-        console.log(error);
+        if (error.message === "Network Error") {
+          toast.error("something went wrong");
+        } else {
+          setMessage(error.response.data.message);
+        }
         setLoading(false);
       });
   };
@@ -83,7 +98,10 @@ const Form = ({ route, method }) => {
                 className="text-[12px] md:text-[16px] border-1 h-8 px-2 py-[3px] w-[100%] rounded-[4px]  border-gray-400 focus:outline-none focus:border-blue-600 focus:border-2"
                 placeholder="Username"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  setMessage("");
+                }}
                 required
               />
             </div>
@@ -97,7 +115,10 @@ const Form = ({ route, method }) => {
               placeholder="Email"
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setMessage("");
+              }}
               required
             />
           </div>
@@ -108,7 +129,10 @@ const Form = ({ route, method }) => {
               placeholder="Password"
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setMessage("");
+              }}
               required
             />
           </div>
