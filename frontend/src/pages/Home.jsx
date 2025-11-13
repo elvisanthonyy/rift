@@ -1,8 +1,6 @@
 import { useEffect, useState, createContext, useContext } from "react";
-import { jwtDecode } from "jwt-decode";
 import { useNavigate, Link } from "react-router-dom";
 import Loading from "../components/Loading";
-import Button from "../components/Button";
 import Nav from "../components/Nav";
 import Conversations from "../components/Conversations";
 import Post from "../components/Post";
@@ -10,7 +8,6 @@ import axios from "axios";
 import Chat from "../components/Chat";
 import { MdSend, MdClose } from "react-icons/md";
 import { VscAccount } from "react-icons/vsc";
-import Message from "../components/Chat";
 import DiscoverFriends from "../components/DiscoverFriends";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -40,7 +37,7 @@ const socket = io(API, {
 const Home = () => {
   //state variables
   //const [token, setToken] = useState("");
-
+  const navigate = useNavigate();
   const [notification, setNotification] = useState();
   const [height, setHeight] = useState("auto");
   const { theme, handleThemeChange } = useContext(ThemeContext);
@@ -268,6 +265,12 @@ const Home = () => {
       });
   };
 
+  //link to chat for mobile
+  const mobilechatRoute = (conversation) => {
+    setSelectedConversation(conversation);
+    navigate(`/message/${conversation._id}`);
+  };
+
   useEffect(() => {
     setLoading(false);
     getFriends();
@@ -398,19 +401,19 @@ const Home = () => {
           )}
           <div
             //conversation container
-            className={`flex flex-col w-screen h-[100dvh] md:w-[22%] md:h-110 rounded-sm shadow-lg fixed ${
+            className={`flex flex-col w-[104%] mx-0 h-[100dvh] md:w-[22%] md:h-110 rounded-sm shadow-lg fixed ${
               theme == "light"
                 ? "bg-lightTheme-background text-lightTheme-text"
                 : "bg-darkTheme-background text-darkTheme-text md:border-1 border-darkTheme-border scrollbar-custom "
-            } md:right-[1%] top-19 md:top-22 overflow-y-scroll transition p-7 duration-800 ${
-              isMessageOpen ? "-translate-x-0 " : "translate-x-150"
+            } md:right-[1%] top-19 md:top-22 overflow-y-scroll transition duration-800 ${
+              isMessageOpen ? "translate-x-0 " : "translate-x-150"
             }`}
           >
-            <div className="flex h-14 items-center justify-between w-[100%] border-b-1 border-b-gray-400 mb-5">
-              <h1 className="mb-5  pb-5 pt-5">Messages</h1>
+            <div className="flex px-5 h-20  items-center justify-between w-[100%] border-b-1 border-b-darkTheme-border 0 mb-5">
+              <h1 className="flex items-center h-full pb-5 pt-5">Messages</h1>
               <div
                 onClick={() => setIsMessageOpen(false)}
-                className="cursor-pointer flex justify-center items-center"
+                className="cursor-pointer h-full flex justify-center items-center"
               >
                 <MdClose />
               </div>
@@ -419,14 +422,18 @@ const Home = () => {
               //check if conversations is defined before rendering to prevent errors
               <Loading />
             ) : (
-              <div className="w-full">
+              <div className="w-full ">
                 {conversations.map((conversation, index) => (
                   //for each conversation
 
                   <div
                     className="cursor-pointer w-full"
                     key={conversation._id}
-                    onClick={() => openChat(conversation, index)}
+                    onClick={() => {
+                      window.innerWidth < 465
+                        ? mobilechatRoute(conversation)
+                        : openChat(conversation, index);
+                    }}
                   >
                     <Conversations
                       title={titles[index]}
@@ -439,15 +446,15 @@ const Home = () => {
           </div>
 
           <div
-            className={`flex flex-col w-screen h-full md:w-[22%] md:h-110 rounded-sm  items-center shadow-lg fixed ${
+            className={`flex flex-col w-[103%] h-full md:w-[22%] md:h-110 rounded-sm  items-center shadow-lg fixed ${
               theme == "light"
                 ? "bg-lightTheme-background text-lightTheme-text"
                 : "bg-darkTheme-background text-darkTheme-text md:border-1 md:border-darkTheme-border scrollbar-custom"
-            } md:left-[1%] left-[0%] top-19 md:top-22 transition duration-800 overflow-y-scroll ${
-              isFriendOpen ? "translate-x-0 " : "-translate-x-150"
+            } md:left-[1%] left-0 top-19 md:top-22 transition duration-800 overflow-y-scroll ${
+              isFriendOpen ? "translate-x-0" : "-translate-x-150"
             }`}
           >
-            <div className="flex items-center justify-between mb-5 mt-5 w-[85%] py-2 border-b-1 border-b-gray-400 ">
+            <div className="flex items-center px-5 justify-between mb-5 h-20 w-full py-2 border-b-1 border-b-darkTheme-border ">
               <p>Friends: {friends?.length}</p>
               <div
                 onClick={() => setIsFriendOpen(false)}
@@ -459,14 +466,14 @@ const Home = () => {
             {loading.fetchData || friends == undefined ? (
               <Loading />
             ) : (
-              <div className="flex w-[85%] flex-col">
+              <div className="flex w-full flex-col">
                 {friends.map((friend, index) => (
                   <div
                     className={`flex items-center p-3 px-5 w-[100%] justify-between text-xl ${
                       theme == "light"
                         ? "bg-lightTheme-body text-lightTheme-text"
-                        : "bg-darkTheme-body text-darkTheme-text border-1 border-darkTheme-border"
-                    }  h-12 mt-2 mb-1 rounded-lg cursor-pointer`}
+                        : "bg-darkTheme-body text-darkTheme-text border-darkTheme-border"
+                    } mt-2 mb-1 h-15 cursor-pointer`}
                     key={(friend._id, index)}
                   >
                     <div className="flex items-center">
@@ -485,7 +492,7 @@ const Home = () => {
                 ))}
               </div>
             )}
-            <div className="flex  mb-5 mt-10 w-[85%] border-b-1 border-b-gray-400 ">
+            <div className="flex  mb-5 mt-10 w-full items-center px-5 h-20 border-b-1 border-t-1 border-t-darkTheme-border border-b-darkTheme-border ">
               <p>Discover</p>
             </div>
             {discoverFriends == undefined ? (

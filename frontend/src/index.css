@@ -7,7 +7,7 @@
   --color-lightTheme-text: #141414;
   --color-lightTheme-border: #cdcdcd;
   --color-darkTheme-body: #212121;
-  --color-darkTheme-background: #191919;
+  --color-darkTheme-background: #0f0f0f;
   --color-darkTheme-text: #e9e9e9;
   --color-darkTheme-border: #444444;
   --toastify-color-success: theme("colors.red.300");
@@ -56,4 +56,8 @@
 
 .wobble {
   animation: wobble 0.2s ease-in-out infinite;
+}
+
+.tsest {
+  color: #212121;
 }

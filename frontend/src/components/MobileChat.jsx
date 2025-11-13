@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext, createContext, useRef } from "react";
 import { MdSend } from "react-icons/md";
 import axios from "axios";
-import { VscAccount } from "react-icons/vsc";
+import { FaUser } from "react-icons/fa";
 import MessageMenu from "./MessageMunu";
 import Message from "./Message";
 import { MdArrowBackIos } from "react-icons/md";
@@ -12,10 +12,9 @@ import { SocketContext } from "../pages/Home";
 import { ThemeContext } from "../contexts/ThemeContext";
 import Loading from "./Loading";
 import { MdDelete, MdEdit, MdArrowBack } from "react-icons/md";
-import { FaUser } from "react-icons/fa";
 //import { SocketContext } from "./SocketContext";
 
-const Chat = ({ conversation, title, userId, call, back }) => {
+const MobileChat = ({ conversation, userId, messages }) => {
   const API = import.meta.env.VITE_REACT_API_URL;
   const chatRef = useRef(null);
   const { theme } = useContext(ThemeContext);
@@ -24,7 +23,6 @@ const Chat = ({ conversation, title, userId, call, back }) => {
   const [height, setHeight] = useState("");
   const [text, setText] = useState("");
   const [timer, setTimer] = useState(null);
-  const [messages, setMessages] = useState([]);
   const [selectedMessage, setSelectedMessage] = useState(null);
   //const [recieverMessages, setRecieverMessages] = useState([]);
 
@@ -71,7 +69,7 @@ const Chat = ({ conversation, title, userId, call, back }) => {
 
   const handleInput = (e) => {
     setText(e.target.value);
-    setHeight(`${e.target.scrollHeight}px`);
+    //setHeight(`${e.target.scrollHeight}px`);
   };
 
   const deleteMessage = () => {
@@ -86,22 +84,6 @@ const Chat = ({ conversation, title, userId, call, back }) => {
           console.log(error);
         });
     }
-  };
-
-  const getMessage = () => {
-    //setLoading(true);
-    api
-      .get(`/conversation/${conversation?._id}`)
-      .then((response) => {
-        setLoading(false);
-
-        setMessages(response.data.messages);
-        //setRecieverMessages(response.data.receiverMessages);
-      })
-      .catch((error) => {
-        setLoading(false);
-        console.log(error);
-      });
   };
 
   const handleMouseDown = (e, message) => {
@@ -124,38 +106,37 @@ const Chat = ({ conversation, title, userId, call, back }) => {
   };
 
   useEffect(() => {
-    getMessage();
     if (socket) {
       socket.on("notification", () => {
         //toast(message.text)
-        getMessage();
       });
     }
   }, []);
+
   return (
     <>
       <div className=" ">
         <div
-          className={`flex flex-col w-[100%] h-[91dvh] md:w-90 md:h-120 rounded-sm fixed items-center shadow-lg right-[1%] ${
+          className={`flex flex-col w-[100%] h-[100dvh] items-center shadow-lg right-[1%] ${
             theme == "light"
               ? "bg-lightTheme-background text-lightTheme-text"
               : "bg-darkTheme-background text-darkTheme-text md:border-1 md:border-darkTheme-border scrollbar-custom"
-          } top-17 left-0 md:top-22`}
+          } top-17 left-0 `}
         >
           {selectedMessage == null ? (
             <div className="flex justify-between w-[90%] m-4 mt-4 border-b-1 border-gray-300 px-2 py-4">
               <div className="flex justify-center items-center">
-                <div onClick={back} className="mr-2 cursor-pointer">
+                <div className="cursor-pointer mr-3">
                   <MdArrowBackIos />
                 </div>
-                <div className="h-8 w-8 bg-blue-500 shrink-0 md:mr-2 rounded-[50%] flex items-center justify-center text-lg">
-                  <FaUser className="text-md" />
+                <div className="h-9 w-9 bg-blue-500 shrink-0 md:mr-2 rounded-[50%] flex items-center justify-center text-lg">
+                  <FaUser className="text-lg md:text-2xl" />
                 </div>
               </div>
 
               <div className="flex items-center justify-evenly w-[30%]">
                 <div className="w-2 h-2 rounded-[50%] bg-green-500 mr-4"></div>
-                <div>{title}</div>
+                <div>{}</div>
               </div>
             </div>
           ) : (
@@ -180,11 +161,11 @@ const Chat = ({ conversation, title, userId, call, back }) => {
               <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] ">
                 <Loading />
               </div>
-            ) : messages.length == 0 ? (
+            ) : messages?.length == 0 ? (
               ""
             ) : (
               <div className="">
-                {messages.map((message, index) => (
+                {messages?.map((message, index) => (
                   <div className="w-full h-9 m-2 relative" key={message?._id}>
                     <div
                       className={` cursor-pointer absolute w-full h-full ${
@@ -213,15 +194,14 @@ const Chat = ({ conversation, title, userId, call, back }) => {
             className="flex justify-between items-center absolute bottom-10 w-[90%]"
           >
             <textarea
-              className={`w-[87%] border-gray-500 rounded-3xl resize-none p-2 pl-5 pt-2 max-h-24 h-8 text-sm overflow-hidden text-gray-900 bg-gray-200 focus:outline-none `}
-              type="text"
+              className={`w-[87%] border-gray-500 rounded-3xl resize-none p-2 pl-5 pt-2 max-h-24 h-11 text-sm overflow-hidden text-gray-900 bg-gray-200 focus:outline-none `}
               value={text}
               style={{ height }}
               onChange={handleInput}
             />
             <button
               type="submit"
-              className="w-8 h-8 text-sm bg-red-500 flex justify-center items-center cursor-pointer rounded-[50%] "
+              className="w-11 h-11 text-sm bg-red-500 flex justify-center items-center cursor-pointer rounded-[50%] "
             >
               <MdSend />
             </button>
@@ -232,4 +212,4 @@ const Chat = ({ conversation, title, userId, call, back }) => {
   );
 };
 
-export default Chat;
+export default MobileChat;

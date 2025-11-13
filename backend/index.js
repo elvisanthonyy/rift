@@ -12,7 +12,7 @@ import { io, sendNotification } from "./socket.js";
 import { Server } from "socket.io";
 import { createServer } from "http";
 import * as dotenv from "dotenv";
-dotenv.config();
+dotenv.config({ path: ".env.local" });
 
 const PORT = parseInt(process.env.PORT);
 const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN;

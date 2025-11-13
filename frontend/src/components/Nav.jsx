@@ -119,7 +119,7 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
             <>
               <div
                 className={`flex shrink-0 cursor-pointer h-full w-13  md:w-20 items-center justify-center ${
-                  checkFriend ? "text-red-500 " : ""
+                  checkFriend ? "text-white" : "text-shadow-lightTheme-border"
                 }  hover:opacity-75  `}
                 onClick={handleT}
               >
@@ -128,7 +128,7 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
 
               <div
                 className={`flex shrink-0 cursor-pointer w-13 h-full md:w-20 mt-[3px] items-center justify-center ${
-                  checkMessage ? "text-red-500" : ""
+                  checkMessage ? "text-white" : "ext-shadow-lightTheme-borde"
                 } hover:opacity-75 `}
                 onClick={handle}
               >

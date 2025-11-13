@@ -1,53 +1,54 @@
-import { useEffect, useState } from "react";
-import { jwtDecode } from "jwt-decode";
-import { useNavigate, Link, useParams } from "react-router-dom";
-import Loading from "../components/Loading";
-import Button from "../components/Button";
+import { use, useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { ConversationContext } from "../components/ConversationContext";
+import api from "../libs/api";
 import axios from "axios";
+import MobileChat from "../components/MobileChat";
 
 const API = import.meta.env.VITE_REACT_API_URL;
 
 const Message = () => {
-  const token = localStorage.getItem("token");
-
-  const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
+  const [conversation, setConversation] = useState([]);
+  const [messages, setMessages] = useState([]);
+  const [user, setUser] = useState([]);
+  const { selectedConversation, setSelectedConversation } =
+    useContext(ConversationContext);
 
   const { id } = useParams();
 
-  const data = {
-    text: text,
-  };
-
-  const sendMessage = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    axios
-      .post(`${API}/${id}`, data, {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then((response) => {
-        setLoading(false);
+  useEffect(() => {
+    api
+      .get(`/conversation/mobile/${id}`)
+      .then((res) => {
+        setConversation(res.data.conversation);
+        setUser(res.data.user);
       })
       .catch((error) => {
         console.log(error);
-        setLoading(false);
       });
-  };
+
+    api
+      .get(`/conversation/${id}`)
+      .then((response) => {
+        setLoading(false);
+
+        setMessages(response.data.messages);
+        //setRecieverMessages(response.data.receiverMessages);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+      });
+  }, []);
 
   return (
     <>
-      <form onSubmit={sendMessage}>
-        <input
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <input type="submit" />
-      </form>
+      <MobileChat
+        conversation={conversation}
+        messages={messages}
+        userId={user?._id}
+      />
     </>
   );
 };

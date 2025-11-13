@@ -7,6 +7,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes.jsx";
 import Profile from "./pages/Profile.jsx";
 import Friends from "./pages/Friends.jsx";
 import Message from "./pages/Message.jsx";
+import MessagePage from "./pages/MessagePage.jsx";
 import { ConversationProvider } from "./components/ConversationContext.jsx";
 import { ThemeProvider } from "./contexts/ThemeContext.jsx";
 
