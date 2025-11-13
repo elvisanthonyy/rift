@@ -50,25 +50,39 @@ const Post = ({ post, like, userId }) => {
   }, []);
   return (
     <div
-      className={`flex flex-shrink-0 flex-col w-[90%] min-h-50 md:min-h-80 h-fit border-1 ml-auto mr-auto text-md rounded-lg m-10 items-center justify-center ${
+      className={`flex relative  flex-shrink-0 flex-col w-full min-h-90 h-fit md:min-h-80  md:border-1 ml-auto mr-auto text-md nx:rounded-2xl mb-10 mt-5 items-center justify-between ${
         theme == "light"
-          ? " text-lightTheme-text border-lightTheme-border"
-          : " text-darkTheme-text border-1 border-darkTheme-border"
+          ? " text-lightTheme-text border-0 border-lightTheme-border bg-lightTheme-body"
+          : " text-darkTheme-text border-0 border-darkTheme-border bg-darkTheme-body"
       } `}
     >
-      <div className="relative mr-auto left-6 mt-5">
-        {post.author.authorName}
+      <div
+        className={`px-6 h-13 flex  ${
+          theme === "light"
+            ? "border-lightTheme-border"
+            : "border-darkTheme-border"
+        } items-center w-full mr-auto border-b-1`}
+      >
+        {`Author - ${post.author.authorName}`}
       </div>
-      <div className="flex w-[400px] min-h-30 h-fit p-10 items-center text-wrap text-center m-10  justify-center px-10 break-words">
+      <div
+        className={`flex w-[400px] border-0 min-h-50 h-fit p-10 items-center text-wrap text-center md:m-10  justify-center px-10 break-words`}
+      >
         {post.post}
       </div>
-      <div className="flex h-17 w-full justify-between items-center px-5">
+      <div
+        className={`flex h-13  ${
+          theme === "light"
+            ? "border-lightTheme-border"
+            : "border-darkTheme-border"
+        } w-full justify-between border-t-1 items-center px-5`}
+      >
         <div className="flex items-center justify-center">
           <button
             onClick={sendLike}
-            className="w-15 h-7 rounded-2xl text-xl text-white flex justify-center items-center mr-1"
+            className="w-10 h-7 rounded-2xl text-xl text-white flex justify-center items-center mr-1"
           >
-            <MdThumbUp
+            <MdFavorite
               className={`${liked ? "text-red-500" : "text-gray-500"}`}
             />
           </button>

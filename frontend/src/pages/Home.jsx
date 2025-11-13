@@ -252,6 +252,7 @@ const Home = () => {
       });
   };
 
+  //for getting friend
   const getFriends = () => {
     setLoading(true);
 
@@ -343,10 +344,10 @@ const Home = () => {
               <textarea
                 //post input
                 rows="1"
-                className={`flex w-[85%] border-1 p-2 min-h-9 h-fit rounded-sm max-h-25 resize-none overflow-hidden focus:outline-none ${
+                className={`flex w-[85%] p-2 min-h-9 h-fit rounded-sm max-h-25 resize-none overflow-hidden focus:outline-none ${
                   theme == " light"
-                    ? " border-lightTheme-border"
-                    : " border-darkTheme-border"
+                    ? " border-lightTheme-border bg-lightTheme-body"
+                    : " border-darkTheme-border bg-darkTheme-body"
                 }  ${postError ? "border-red-400 wobble" : ""}`}
                 style={{ height }}
                 value={post}
@@ -369,14 +370,14 @@ const Home = () => {
             {loading.fetchData ? (
               //ensure post is not undefined to prevent erro
               <Loading />
-            ) : posts.length == 0 ? (
+            ) : posts?.length == 0 ? (
               <div className="my-auto">No post to view</div>
             ) : (
               <div
-                className="w-full  flex flex-col justify-center"
+                className="w-full flex flex-col justify-center"
                 //for each post
               >
-                {posts.map((post, index) => (
+                {posts?.map((post, index) => (
                   <div key={post._id}>
                     <Post post={post} userId={userId} />
                   </div>
@@ -447,7 +448,7 @@ const Home = () => {
             }`}
           >
             <div className="flex items-center justify-between mb-5 mt-5 w-[85%] py-2 border-b-1 border-b-gray-400 ">
-              <p>Friends: {friends.length}</p>
+              <p>Friends: {friends?.length}</p>
               <div
                 onClick={() => setIsFriendOpen(false)}
                 className="cursor-pointer"
