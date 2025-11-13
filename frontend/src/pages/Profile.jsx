@@ -133,10 +133,10 @@ const Profile = () => {
         ) : (
           <div className="flex flex-col md:flex-row relative">
             <form
-              className={`relative flex justify-start text-sm pt-10 mx-auto align-center flex-col w-[95%] md:w-[30%] h-[85%] p-10 rounded-sm top-19 md:top-22 md:left-[1%] md:mx-auto ${
+              className={`relative flex justify-start text-sm pt-10 mx-auto align-center flex-col w-[95%] md:w-[40%] lg:w-[30%] h-[85%] p-10 rounded-sm top-24 md:top-22 md:left-[1%] md:mx-auto ${
                 theme == "light"
                   ? "bg-lightTheme-background text-lightTheme-text"
-                  : "bg-darkTheme-background text-darkTheme-text border-1 border-darkTheme-border"
+                  : "bg-darkTheme-background text-darkTheme-text border-darkTheme-border"
               } md:fixed`}
               onSubmit={editProfile}
             >
@@ -186,10 +186,10 @@ const Profile = () => {
               </button>
             </form>
             <div
-              className={`w-full md:w-[67%] md:absolute right-0 top-0 h-fit min-h-[85dvh] block items-center mt-22 md:mr-[1%] p-2 py-10 ${
+              className={`w-full md:w-[56%] lg:w-[67%] md:absolute right-0 top-0 h-fit min-h-[85dvh] block items-center mt-28 md:mt-22 md:mr-[1%] p-2 py-10 ${
                 theme == "light"
                   ? "bg-lightTheme-background text-lightTheme-text"
-                  : "bg-darkTheme-background text-darkTheme-text md:border-1 border-darkTheme-border"
+                  : "bg-darkTheme-background text-darkTheme-text  border-darkTheme-border"
               }`}
               //for displaying users post only
             >

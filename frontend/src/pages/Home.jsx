@@ -308,6 +308,7 @@ const Home = () => {
           }`}
         >
           <Nav
+            pageName="home"
             //nav bar
 
             //open message box
@@ -330,7 +331,7 @@ const Home = () => {
           )}
 
           <div
-            className={`md:flex flex-col text-sm w-full md:w-[50%] min-h-[91dvh] max-h-fit  mx-auto items-center ${
+            className={`md:flex flex-col text-sm w-full md:w-full lg:w-[40%] xl:w-[52%] min-h-[91dvh] max-h-fit  mx-auto items-center ${
               theme == "light"
                 ? "bg-lightTheme-background text-lightTheme-text"
                 : "bg-darkTheme-background text-darkTheme-text md:border-1 md:border-darkTheme-border"
@@ -338,11 +339,11 @@ const Home = () => {
           >
             <form
               //form for sending posts
-              className={`flex h-20 md:h-30 w-full border-b-0 ${
+              className={`flex h-20 md:h-30 w-full md:w-[90%] border-b-0 ${
                 theme == "light"
                   ? "border-b-lightTheme-border"
                   : "border-b-darkTheme-border"
-              }   justify-between items-center px-4`}
+              }   justify-between items-center px-4 md:px-0`}
               onSubmit={sendPost}
             >
               <textarea
@@ -402,7 +403,7 @@ const Home = () => {
           )}
           <div
             //conversation container
-            className={`flex flex-col w-[104%] mx-0 h-[100dvh] md:w-[22%] md:h-110 rounded-sm shadow-lg fixed ${
+            className={`flex flex-col w-[104%] mx-0 h-[100dvh] md:w-[40%] md:top-25 lg:top-22 lg:w-[28%] xl:w-[22%] md:h-110 rounded-sm shadow-lg fixed ${
               theme == "light"
                 ? "bg-lightTheme-background text-lightTheme-text"
                 : "bg-darkTheme-background text-darkTheme-text md:border-1 border-darkTheme-border scrollbar-custom "
@@ -447,7 +448,7 @@ const Home = () => {
           </div>
 
           <div
-            className={`flex flex-col w-[103%] h-full md:w-[22%] md:h-110 rounded-sm  items-center shadow-lg fixed ${
+            className={`flex flex-col w-[103%] h-full md:w-[40%] md:top-25 lg:top-22 xl:w-[22%] lg:w-[28%] md:h-110 rounded-sm  items-center shadow-lg fixed ${
               theme == "light"
                 ? "bg-lightTheme-background text-lightTheme-text"
                 : "bg-darkTheme-background text-darkTheme-text md:border-1 md:border-darkTheme-border scrollbar-custom"

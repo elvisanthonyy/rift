@@ -136,11 +136,11 @@ const Chat = ({ conversation, title, userId, call, back }) => {
     <>
       <div className=" ">
         <div
-          className={`flex flex-col w-[100%] h-[91dvh] md:w-90 md:h-120 rounded-sm fixed items-center shadow-lg right-[1%] ${
+          className={`flex flex-col w-[100%] h-[91dvh] md:w-[40%] lg:w-[28%] xl:w-[22%] md:h-120 rounded-sm fixed items-center shadow-lg right-[1%] ${
             theme == "light"
               ? "bg-lightTheme-background text-lightTheme-text"
               : "bg-darkTheme-background text-darkTheme-text md:border-1 md:border-darkTheme-border scrollbar-custom"
-          } top-17 left-0 md:top-22`}
+          } top-17 right-0 md:top-22`}
         >
           {selectedMessage == null ? (
             <div className="flex justify-between w-[90%] m-4 mt-4 border-b-1 border-gray-300 px-2 py-4">

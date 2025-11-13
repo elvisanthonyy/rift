@@ -100,10 +100,10 @@ const UserPost = ({ post, getPost, userId }) => {
 
   return (
     <div
-      className={`flex flex-col mx-auto text-sm min-h-60 md:min-h-80 h-fit border-1 m-10 rounded-lg relative items-center justify-center border-gray-400 w-[90%] ${
+      className={`flex flex-col mx-auto text-sm min-h-60 md:min-h-80 h-fit md:h-100 m-10 rounded-lg relative items-center justify-center border-gray-400 w-[90%] ${
         theme == "light"
           ? " text-lightTheme-text border-lightTheme-border"
-          : " text-darkTheme-text border-1 border-darkTheme-border"
+          : " text-darkTheme-text bg-darkTheme-body"
       } `}
     >
       <div className=" mr-auto ml-6 mt-5">You</div>

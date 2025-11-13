@@ -24,7 +24,14 @@ import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 const API = import.meta.env.VITE_REACT_API_URL;
 
-const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
+const Nav = ({
+  handle,
+  handleT,
+  method,
+  checkMessage,
+  checkFriend,
+  pageName,
+}) => {
   const navigate = useNavigate();
   const { selectedConversation, setSelectedConversation } =
     useContext(ConversationContext);
@@ -73,11 +80,11 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
             : "bg-darkTheme-background text-darkTheme-text border-b-1 border-b-darkTheme-border"
         } shadow-sm items-center px-[4%] md:px-4%] justify-between z-20`}
       >
-        <div className="flex items-center mx-[4px] justify-center md:justify-start md:min-w-80 w-fit">
+        <div className="flex items-center mx-[4px] justify-center md:justify-start md:min-w-60 w-fit">
           <div className="flex md:min-w-35 w-fit h-full justify-start items-center">
-            <div className="h-9 w-9 bg-blue-500 shrink-0 md:mr-2 rounded-[50%] flex items-center justify-center text-lg">
+            <div className="h-9 w-9 bg-blue-500 shrink-0 md:mr-5 rounded-[50%] flex items-center justify-center text-lg">
               <Link to="/profile">
-                <FaUser className="text-lg md:text-2xl" />
+                <FaUser className="text-lg md:text-xl" />
               </Link>
             </div>
 
@@ -92,29 +99,35 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
             )}
           </div>
         </div>
-        <div className="text-2xl hidden md:flex text-red-700 md:mx-4 md:mr-10">
+        <div className="text-2xl hidden shrink-0 md:w-20  md:flex text-red-700 md:mx-4 md:mr-10">
           {theme == "light" ? (
-            <img className=" h-5 md:h-6" alt="rift" src={rift} />
+            <img className=" h-5 md:h-5" alt="rift" src={rift} />
           ) : (
-            <img className="h-4 md:h-4" alt="rift" src={rift_dark} />
+            <img className="h-4 md:h-5" alt="rift" src={rift_dark} />
           )}
         </div>
         <div
-          className={`flex shrink-0 min-w-[60%] text-[20px] md:text-[21px] h-full ${
-            name == "Others" ? "w-fit md:w-[500px]" : "w-fit"
-          } justify-between items-center`}
+          className={`flex shrink-0 min-w-[50%]  lg:w-[60%] md:min-w-[20%] text-[20px] md:text-[21px] h-full ${
+            name == "Others"
+              ? "w-fit md:w-[30%] justify-between"
+              : "w-fit justify-center lg:justify-between"
+          }  items-center`}
         >
-          <Link to="/" className="h-full">
-            <div
-              className={`flex cursor-pointer h-full w-13 md:w-20 items-center justify-center  text-darktheme-text ${
-                theme == "light"
-                  ? "hover:bg-lightTheme-body/25"
-                  : "hover:bg-darkTheme-body"
-              }`}
-            >
-              <MdHome className="text-2xl" />
-            </div>
-          </Link>
+          <div
+            onClick={() =>
+              pageName === "home" ? window.location.reload() : navigate("/")
+            }
+            className={`flex cursor-pointer ${
+              name == "Others" ? "" : "lg:mx-auto"
+            }  h-full w-13 md:w-20 items-center justify-center  text-darktheme-text ${
+              theme == "light"
+                ? "hover:bg-lightTheme-body/25"
+                : "hover:bg-darkTheme-body"
+            }`}
+          >
+            <MdHome className="text-2xl" />
+          </div>
+
           {name == "Others" ? (
             <>
               <div
@@ -142,25 +155,25 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
           <div
             className={` ${
               isMenuOpen
-                ? "fixed bg-black/50 w-[100%] h-[100dvh] top-0 right-0"
+                ? "fixed bg-black/50  w-[100%] h-[100dvh] top-0 right-0"
                 : "hidden"
-            } m:h-full md:flex md:justify-end shrink-0 items-center md:h-full md:static w-60 absolute `}
+            } m:h-full md:justify-end  shrink-0 lg:justify-end items-center md:h-full lg:flex w-60 `}
             onClick={() => setIsMenuOpen(false)}
           >
             <div
               className={` 
                 
-                   grid z-15 grid-rows-9  place-items-center gap-y-3 items-center justify-center gap-4  py-17 md:py-0 w-[70%] top-0 right-0 h-[100dvh] md:w-full
+                   grid z-15 grid-rows-9 place-items-center gap-y-3 items-center justify-center gap-4  py-17 md:py-0 w-[70%] md:w-[50%] top-0 right-0 h-[100dvh] lg:w-full
                   
-               md:h-full md:flex absolute md:static ${
+               lg:h-full md:flex absolute lg:static ${
                  theme == "light"
-                   ? "bg-lightTheme-body md:bg-transparent"
-                   : "bg-darkTheme-body md:bg-transparent"
+                   ? "bg-lightTheme-body lg:bg-transparent"
+                   : "bg-darkTheme-body lg:bg-transparent"
                } `}
               onClick={(e) => e.stopPropagation()}
             >
               <div
-                className={`cursor-pointer shrink-0 w-fit md:w-13 items-center justify-start text-[16px] flex "text-black" : "text-white"
+                className={`cursor-pointer shrink-0 lg:justify-end w-fit md:w-13 items-center justify-start text-[16px] flex "text-black" : "text-white"
           }`}
                 onClick={handleThemeChange}
               >
@@ -174,15 +187,13 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
                 </div>
               </div>
               <div
-                className={`flex shrink-0 text-[16px] cursor-pointer  w-fit  h-full md:w-30 items-center justify-center  ${
-                  theme == "light"
-                    ? "hover:bg-lightTheme-body/25"
-                    : "hover:bg-darkTheme-body"
+                className={`flex shrink-0 text-[16px] lg:justify-end cursor-pointer  w-fit  h-full md:w-30 items-center justify-center  ${
+                  theme == "light" ? "hover:opacity-85" : "hover:opacity-85"
                 } `}
                 onClick={logOut}
               >
                 <MdLogout className="text-[18px] mr-2" />
-                <div className="flex shrink-0  text-[14px] w-14 md:text-sm  text-red-500">
+                <div className="flex shrink-0  text-[14px] w-14 md:text-sm">
                   Log Out
                 </div>
               </div>
@@ -190,7 +201,7 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
           </div>
         </div>
         <div
-          className="block z-20 md:hidden h-fit w-fit mx-2 cursor-pointer"
+          className="block z-20 lg:hidden h-fit w-fit mx-2 cursor-pointer"
           onClick={handleOpenMenu}
         >
           <span
