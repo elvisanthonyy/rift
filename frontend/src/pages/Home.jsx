@@ -11,6 +11,7 @@ import { VscAccount } from "react-icons/vsc";
 import DiscoverFriends from "../components/DiscoverFriends";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaUser } from "react-icons/fa";
 import {
   ConversationProvider,
   ConversationContext,
@@ -347,7 +348,7 @@ const Home = () => {
               <textarea
                 //post input
                 rows="1"
-                className={`flex w-[85%] p-2 min-h-9 h-fit rounded-sm max-h-25 resize-none overflow-hidden focus:outline-none ${
+                className={`flex w-[85%] p-2 min-h-13 h-fit rounded-4xl max-h-25 resize-none overflow-hidden focus:outline-none ${
                   theme == " light"
                     ? " border-lightTheme-border bg-lightTheme-body"
                     : " border-darkTheme-border bg-darkTheme-body"
@@ -360,11 +361,11 @@ const Home = () => {
                 //post button
                 type="submit"
                 value="post"
-                className={`w-15 ml-3 md:w-20 rounded-md ${
+                className={`w-15 ml-3 md:w-20 rounded-xl ${
                   theme == "light"
                     ? "bg-lightTheme-text text-lightTheme-background "
                     : "bg-darkTheme-text text-darkTheme-body "
-                } hover:opacity-50 text-sm cursor-pointer h-9 `}
+                } hover:opacity-50 text-sm cursor-pointer h-13 `}
               >
                 {loading.post ? <ButtonLoading /> : "Post"}
               </button>
@@ -409,7 +410,7 @@ const Home = () => {
               isMessageOpen ? "translate-x-0 " : "translate-x-150"
             }`}
           >
-            <div className="flex px-5 h-20  items-center justify-between w-[100%] border-b-1 border-b-darkTheme-border 0 mb-5">
+            <div className="flex px-5 h-20  items-center justify-between w-[100%] border-b-1 border-b-darkTheme-border ">
               <h1 className="flex items-center h-full pb-5 pt-5">Messages</h1>
               <div
                 onClick={() => setIsMessageOpen(false)}
@@ -454,7 +455,7 @@ const Home = () => {
               isFriendOpen ? "translate-x-0" : "-translate-x-150"
             }`}
           >
-            <div className="flex items-center px-5 justify-between mb-5 h-20 w-full py-2 border-b-1 border-b-darkTheme-border ">
+            <div className="flex items-center px-5 justify-between mb-0 h-20 w-full py-2 border-b-1 border-b-darkTheme-border ">
               <p>Friends: {friends?.length}</p>
               <div
                 onClick={() => setIsFriendOpen(false)}
@@ -473,12 +474,12 @@ const Home = () => {
                       theme == "light"
                         ? "bg-lightTheme-body text-lightTheme-text"
                         : "bg-darkTheme-body text-darkTheme-text border-darkTheme-border"
-                    } mt-2 mb-1 h-15 cursor-pointer`}
+                    } mb-2 h-16 cursor-pointer`}
                     key={(friend._id, index)}
                   >
                     <div className="flex items-center">
-                      <div className="flex justify-center items-center h-8 w-8 rounded-[50%] mr-3">
-                        <VscAccount />
+                      <div className="h-8 w-8 mr-3 bg-blue-500 shrink-0 md:mr-2 rounded-[50%] flex items-center justify-center text-lg">
+                        <FaUser className="text-lg md:text-2xl" />
                       </div>
                       <div className="text-sm">{friend.username}</div>
                     </div>
@@ -492,13 +493,13 @@ const Home = () => {
                 ))}
               </div>
             )}
-            <div className="flex  mb-5 mt-10 w-full items-center px-5 h-20 border-b-1 border-t-1 border-t-darkTheme-border border-b-darkTheme-border ">
+            <div className="flex  mb-0 mt-10 w-full items-center px-5 h-20 border-b-1 border-t-1 border-t-darkTheme-border border-b-darkTheme-border ">
               <p>Discover</p>
             </div>
             {discoverFriends == undefined ? (
               "no friends to discover"
             ) : (
-              <div className="flex w-[85%] flex-col">
+              <div className="flex w-full flex-col">
                 {discoverFriends.map((discoverFriend, index) => (
                   <div className="w-full" key={discoverFriend._id}>
                     <DiscoverFriends

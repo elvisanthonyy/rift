@@ -132,9 +132,11 @@ const MobileChat = ({
                 </div>
               </div>
 
-              <div className="flex items-center justify-evenly w-[30%]">
-                <div className="w-2 h-2 rounded-[50%] bg-green-500 mr-4"></div>
-                <div>{otherUser[0]?.name}</div>
+              <div className="flex items-center justify-end w-[70%]">
+                <div className="w-2 h-2 rounded-[50%] bg-green-500 mt-1 mr-4"></div>
+                <div className="ml-3 h-full flex items-center">
+                  {otherUser[0]?.name}
+                </div>
               </div>
             </div>
           ) : (

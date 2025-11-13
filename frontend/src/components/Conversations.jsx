@@ -15,7 +15,7 @@ const Conversations = ({ conversation, title }) => {
           theme == "light"
             ? "bg-lightTheme-body text-lightTheme-text"
             : "bg-darkTheme-body text-darkTheme-text border-0 md:border-1 md:border-darkTheme-border"
-        } h-15 mt-2 mb-1 hover:opacity-60`}
+        } h-16 mt-0 mb-3 hover:opacity-60`}
       >
         <div className="flex w-fit items-center">
           <div className="h-2 w-2 rounded-[50%] bg-green-600 mr-5"></div>

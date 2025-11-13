@@ -100,7 +100,7 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
           )}
         </div>
         <div
-          className={`flex shrink-0 min-w-45 text-[20px] md:text-[21px] h-full ${
+          className={`flex shrink-0 min-w-[60%] text-[20px] md:text-[21px] h-full ${
             name == "Others" ? "w-fit md:w-[500px]" : "w-fit"
           } justify-between items-center`}
         >

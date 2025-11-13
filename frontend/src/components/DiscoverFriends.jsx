@@ -5,6 +5,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ThemeContext } from "../contexts/ThemeContext";
+import { FaUser } from "react-icons/fa";
 
 const DiscoverFriends = ({ friend, addFriend }) => {
   const { theme } = useContext(ThemeContext);
@@ -16,12 +17,12 @@ const DiscoverFriends = ({ friend, addFriend }) => {
           theme == "light"
             ? "bg-lightTheme-body text-lightTheme-text"
             : "bg-darkTheme-body text-darkTheme-text border-1 border-darkTheme-border"
-        }  h-12 mt-2 mb-1 rounded-lg cursor-pointer`}
+        }  h-16 mb-2 border-none cursor-pointer`}
         key={friend._id}
       >
         <div className="flex items-center">
-          <div className="flex justify-center items-center text-[16px] h-8 w-8 rounded-[50%] mr-3">
-            <VscAccount />
+          <div className="h-8 w-8 mr-4 bg-purple-500 shrink-0 md:mr-2 rounded-[50%] flex items-center justify-center text-lg">
+            <FaUser className="text-lg md:text-2xl" />
           </div>
           <div className="text-sm">{friend.username}</div>
         </div>

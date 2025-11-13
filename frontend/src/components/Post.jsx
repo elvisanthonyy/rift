@@ -50,7 +50,7 @@ const Post = ({ post, like, userId }) => {
   }, []);
   return (
     <div
-      className={`flex relative  flex-shrink-0 flex-col w-full min-h-90 h-fit md:min-h-80  md:border-1 ml-auto mr-auto text-md nx:rounded-2xl mb-5 mt-0 items-center justify-between ${
+      className={`flex relative rounded-lg mt-2 md:rounded-2xl flex-shrink-0 flex-col w-[90%] min-h-90 h-fit md:min-h-80  md:border-1 ml-auto mr-auto text-md nx:rounded-2xl mb-5 items-center justify-between ${
         theme == "light"
           ? " text-lightTheme-text border-0 border-lightTheme-border bg-lightTheme-body"
           : " text-darkTheme-text border-0 border-darkTheme-border bg-darkTheme-body"
