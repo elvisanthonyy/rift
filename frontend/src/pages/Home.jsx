@@ -299,7 +299,7 @@ const Home = () => {
     <>
       <SocketContext.Provider value={socket}>
         <div
-          className={`min-h-[90vh] pt-19 md:pt-22 overflow-x-hidden ${
+          className={`min-h-[90vh] pt-23 md:pt-22 overflow-x-hidden ${
             theme == "light" ? "bg-lightTheme-body" : "bg-darkTheme-body"
           }`}
         >
@@ -334,7 +334,7 @@ const Home = () => {
           >
             <form
               //form for sending posts
-              className={`flex h-20 md:h-30 w-full border-b-1 ${
+              className={`flex h-20 md:h-30 w-full border-b-0 ${
                 theme == "light"
                   ? "border-b-lightTheme-border"
                   : "border-b-darkTheme-border"

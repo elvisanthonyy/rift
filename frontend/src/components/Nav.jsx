@@ -11,6 +11,9 @@ import {
   MdLogout,
 } from "react-icons/md";
 
+import { FiMessageCircle } from "react-icons/fi";
+import { FaUser } from "react-icons/fa";
+
 import rift from "../assets/rift.svg";
 import rift_dark from "../assets/rift_dark.svg";
 import { ToastContainer, toast } from "react-toastify";
@@ -64,7 +67,7 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
   return (
     <>
       <nav
-        className={`flex fixed top-0 left-0 w-full h-17 md:h-19 ${
+        className={`flex fixed top-0 left-0 w-full h-21 md:h-19 ${
           theme == "light"
             ? "bg-lightTheme-background text-lightTheme-text"
             : "bg-darkTheme-background text-darkTheme-text border-b-1 border-b-darkTheme-border"
@@ -72,9 +75,9 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
       >
         <div className="flex items-center mx-[4px] justify-center md:justify-start md:min-w-80 w-fit">
           <div className="flex md:min-w-35 w-fit h-full justify-start items-center">
-            <div className="h-10 w-10  md:mr-2 rounded-[50%] flex items-center justify-center text-lg">
+            <div className="h-9 w-9 bg-blue-500 shrink-0 md:mr-2 rounded-[50%] flex items-center justify-center text-lg">
               <Link to="/profile">
-                <VscAccount className="text-2xl md:text-2xl" />
+                <FaUser className="text-lg md:text-2xl" />
               </Link>
             </div>
 
@@ -89,7 +92,7 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
             )}
           </div>
         </div>
-        <div className="text-2xl text-red-700 md:mx-4 md:mr-10">
+        <div className="text-2xl hidden md:flex text-red-700 md:mx-4 md:mr-10">
           {theme == "light" ? (
             <img className=" h-5 md:h-6" alt="rift" src={rift} />
           ) : (
@@ -97,34 +100,10 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
           )}
         </div>
         <div
-          className={`flex shrink-0  text-[20px] md:text-[21px] h-full ${
+          className={`flex shrink-0 min-w-45 text-[20px] md:text-[21px] h-full ${
             name == "Others" ? "w-fit md:w-[500px]" : "w-fit"
           } justify-between items-center`}
         >
-          {name == "Others" ? (
-            <>
-              <div
-                className={`flex shrink-0 cursor-pointer h-full w-13  md:w-20 items-center justify-center ${
-                  checkFriend ? "text-red-500 " : ""
-                }  hover:opacity-75  `}
-                onClick={handleT}
-              >
-                <MdOutlinePermIdentity />
-              </div>
-
-              <div
-                className={`flex shrink-0 cursor-pointer w-13 h-full md:w-20 mt-[3px] items-center justify-center ${
-                  checkMessage ? "text-red-500" : ""
-                } hover:opacity-75 `}
-                onClick={handle}
-              >
-                <MdMessage className="text-[18px] md:text-[19px]  " />
-              </div>
-            </>
-          ) : (
-            ""
-          )}
-
           <Link to="/" className="h-full">
             <div
               className={`flex cursor-pointer h-full w-13 md:w-20 items-center justify-center  text-darktheme-text ${
@@ -133,9 +112,32 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
                   : "hover:bg-darkTheme-body"
               }`}
             >
-              <MdHome />
+              <MdHome className="text-2xl" />
             </div>
           </Link>
+          {name == "Others" ? (
+            <>
+              <div
+                className={`flex shrink-0 cursor-pointer h-full w-13  md:w-20 items-center justify-center ${
+                  checkFriend ? "text-red-500 " : ""
+                }  hover:opacity-75  `}
+                onClick={handleT}
+              >
+                <FaUser className="text-lg" />
+              </div>
+
+              <div
+                className={`flex shrink-0 cursor-pointer w-13 h-full md:w-20 mt-[3px] items-center justify-center ${
+                  checkMessage ? "text-red-500" : ""
+                } hover:opacity-75 `}
+                onClick={handle}
+              >
+                <MdMessage className="text-[22px] md:text-[19px]  " />
+              </div>
+            </>
+          ) : (
+            ""
+          )}
 
           <div
             className={` ${
@@ -192,18 +194,18 @@ const Nav = ({ handle, handleT, method, checkMessage, checkFriend }) => {
           onClick={handleOpenMenu}
         >
           <span
-            className={`block w-[18px] h-[1px] ${
-              theme === "light" ? "bg-black" : "bg-white"
+            className={`block w-[22px] h-[2px] ${
+              theme === "light" ? "bg-black" : "bg-lightTheme-body"
             } rounded-lg  m-[4px] ${isMenuOpen && "-rotate-45 translate-y-1"}`}
           ></span>
           <span
-            className={`block w-[18px] h-[1px] ${
-              theme === "light" ? "bg-black" : "bg-white"
+            className={`block w-[22px] h-[2px] ${
+              theme === "light" ? "bg-black" : "bg-lightTheme-body"
             } rounded-lg m-[4px] ${isMenuOpen && "opacity-0"}`}
           ></span>
           <span
-            className={`block w-[18px] h-[1px] ${
-              theme === "light" ? "bg-black" : "bg-white"
+            className={`block w-[22px] h-[2px] ${
+              theme === "light" ? "bg-black" : "bg-lightTheme-body"
             } rounded-lg  m-[4px] ${isMenuOpen && "rotate-45 -translate-y-1"}`}
           ></span>
         </div>
