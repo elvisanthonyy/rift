@@ -11,7 +11,7 @@ const Message = ({ message, userId }) => {
   return (
     <>
       <div
-        className={`flex flex-none min-w-13 min-h-9 h-fit flex-wrap max-w-[60%] text-white text-[12px] text-left text-sm  ${
+        className={`relative flex flex-none min-w-13 min-h-9 h-fit flex-wrap max-w-[60%] my-4 text-white text-[12px] text-left text-sm  ${
           message.senderId == userId
             ? "bg-red-600 ml-auto"
             : "bg-blue-600 mr-auto"

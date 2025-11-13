@@ -12,22 +12,13 @@ const Message = () => {
   const [conversation, setConversation] = useState([]);
   const [messages, setMessages] = useState([]);
   const [user, setUser] = useState([]);
+  const [otherUser, setOtherUser] = useState([]);
   const { selectedConversation, setSelectedConversation } =
     useContext(ConversationContext);
 
   const { id } = useParams();
 
-  useEffect(() => {
-    api
-      .get(`/conversation/mobile/${id}`)
-      .then((res) => {
-        setConversation(res.data.conversation);
-        setUser(res.data.user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
+  const getMessages = () => {
     api
       .get(`/conversation/${id}`)
       .then((response) => {
@@ -40,6 +31,25 @@ const Message = () => {
         setLoading(false);
         console.log(error);
       });
+  };
+  useEffect(() => {
+    api
+      .get(`/conversation/mobile/${id}`)
+      .then((res) => {
+        setConversation(res.data.conversation);
+        setUser(res.data.user);
+        //get other user to use for title
+        setOtherUser(
+          res.data.conversation.participants.filter(
+            (part) => part.userId !== res.data.user._id
+          )
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    getMessages();
   }, []);
 
   return (
@@ -48,6 +58,8 @@ const Message = () => {
         conversation={conversation}
         messages={messages}
         userId={user?._id}
+        otherUser={otherUser}
+        getMessages={getMessages}
       />
     </>
   );

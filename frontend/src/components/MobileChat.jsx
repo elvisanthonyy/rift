@@ -2,7 +2,7 @@ import { useState, useEffect, useContext, createContext, useRef } from "react";
 import { MdSend } from "react-icons/md";
 import axios from "axios";
 import { FaUser } from "react-icons/fa";
-import MessageMenu from "./MessageMunu";
+import { useNavigate } from "react-router-dom";
 import Message from "./Message";
 import { MdArrowBackIos } from "react-icons/md";
 import { ToastContainer, toast } from "react-toastify";
@@ -12,10 +12,18 @@ import { SocketContext } from "../pages/Home";
 import { ThemeContext } from "../contexts/ThemeContext";
 import Loading from "./Loading";
 import { MdDelete, MdEdit, MdArrowBack } from "react-icons/md";
+import api from "../libs/api";
 //import { SocketContext } from "./SocketContext";
 
-const MobileChat = ({ conversation, userId, messages }) => {
-  const API = import.meta.env.VITE_REACT_API_URL;
+const MobileChat = ({
+  conversation,
+  userId,
+  messages,
+  otherUser,
+  getMessages,
+}) => {
+  const navigate = useNavigate();
+
   const chatRef = useRef(null);
   const { theme } = useContext(ThemeContext);
   const socket = useContext(SocketContext);
@@ -23,22 +31,9 @@ const MobileChat = ({ conversation, userId, messages }) => {
   const [height, setHeight] = useState("");
   const [text, setText] = useState("");
   const [timer, setTimer] = useState(null);
+
   const [selectedMessage, setSelectedMessage] = useState(null);
   //const [recieverMessages, setRecieverMessages] = useState([]);
-
-  const api = axios.create({
-    baseURL: API,
-  });
-
-  api.interceptors.request.use(
-    (config) => {
-      config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
 
   const sendMessage = async (id, e) => {
     e.preventDefault();
@@ -58,7 +53,7 @@ const MobileChat = ({ conversation, userId, messages }) => {
           setHeight("");
           setLoading(false);
           setText("");
-          getMessage();
+          getMessages();
         })
         .catch((error) => {
           console.log(error);
@@ -78,7 +73,7 @@ const MobileChat = ({ conversation, userId, messages }) => {
         .delete(`/message/${selectedMessage._id}`)
         .then((response) => {
           setSelectedMessage(null);
-          getMessage();
+          getMessages();
         })
         .catch((error) => {
           console.log(error);
@@ -124,9 +119,12 @@ const MobileChat = ({ conversation, userId, messages }) => {
           } top-17 left-0 `}
         >
           {selectedMessage == null ? (
-            <div className="flex justify-between w-[90%] m-4 mt-4 border-b-1 border-gray-300 px-2 py-4">
+            <div className="flex h-20 justify-between w-full px-5 border-b-1 border-gray-300 py-4">
               <div className="flex justify-center items-center">
-                <div className="cursor-pointer mr-3">
+                <div
+                  onClick={() => navigate(-1)}
+                  className="cursor-pointer mr-3"
+                >
                   <MdArrowBackIos />
                 </div>
                 <div className="h-9 w-9 bg-blue-500 shrink-0 md:mr-2 rounded-[50%] flex items-center justify-center text-lg">
@@ -136,19 +134,19 @@ const MobileChat = ({ conversation, userId, messages }) => {
 
               <div className="flex items-center justify-evenly w-[30%]">
                 <div className="w-2 h-2 rounded-[50%] bg-green-500 mr-4"></div>
-                <div>{}</div>
+                <div>{otherUser[0]?.name}</div>
               </div>
             </div>
           ) : (
-            <div
-              className="flex justify-between w-[90%] m-4 mt-4 border-b-1 border-gray-300 py-4 px-1"
-              onClick={deleteMessage}
-            >
+            <div className="flex justify-between w-full h-15 px-7 m-4 mt-4 border-b-1 border-gray-300 py-4">
               <MdArrowBack
                 className="text-xl cursor-pointer"
                 onClick={() => setSelectedMessage(null)}
               />
-              <MdDelete className="text-xl cursor-pointer" />
+              <MdDelete
+                onClick={deleteMessage}
+                className="text-xl cursor-pointer"
+              />
             </div>
           )}
 
@@ -166,7 +164,7 @@ const MobileChat = ({ conversation, userId, messages }) => {
             ) : (
               <div className="">
                 {messages?.map((message, index) => (
-                  <div className="w-full h-9 m-2 relative" key={message?._id}>
+                  <div className="w-full h-11 my-3 relative" key={message?._id}>
                     <div
                       className={` cursor-pointer absolute w-full h-full ${
                         selectedMessage !== null &&
@@ -194,7 +192,7 @@ const MobileChat = ({ conversation, userId, messages }) => {
             className="flex justify-between items-center absolute bottom-10 w-[90%]"
           >
             <textarea
-              className={`w-[87%] border-gray-500 rounded-3xl resize-none p-2 pl-5 pt-2 max-h-24 h-11 text-sm overflow-hidden text-gray-900 bg-gray-200 focus:outline-none `}
+              className={`w-[87%] border-gray-500  mr-3 rounded-3xl resize-none p-2 pl-5 pt-2 max-h-24 h-11 text-sm overflow-hidden text-gray-900 bg-gray-200 focus:outline-none `}
               value={text}
               style={{ height }}
               onChange={handleInput}
